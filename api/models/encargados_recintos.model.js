@@ -21,7 +21,7 @@ const encargados_recintos_schema = new mongoose.Schema({
         unique: true
     },
     fechaNacimiento: {
-        required: true,
+        //    required: true,
         format: Date
     },
     genero: {
@@ -29,11 +29,20 @@ const encargados_recintos_schema = new mongoose.Schema({
         required: true
     },
     contrasena: {
-        type: String
+        type: String,
+        required: true
+    },
+    tipo: {
+        type: String,
+        required: true
+    },
+    estado: {
+        type: String,
+        required: true
     }
+
 
 });
 
-//Modelo en que se apoya, nombre de la conección den la base de datos
-//Le pase el nombre de la base de datos, el schema, y la coleccion
-module.exports = mongoose.model('papayadb', encargados_recintos_schema, 'encargados_recintos');
+//le pasamos como parametros, Modelo, Esquema, nombre de la coleccion en la db
+module.exports = mongoose.model('EncargadoRecinto', encargados_recintos_schema, 'encargados_recintos');

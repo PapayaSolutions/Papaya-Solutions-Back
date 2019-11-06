@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 //Se declaran todos los accesos de los archivos routes.
-// const producto = require('./routes/productos.route');
-
+const EncargadoRecintos = require('./routes/encargados_recintos.route');
+const Recintos = require('./routes/recintos.route');
 
 const app = express();
 app.use(cors());
@@ -53,5 +53,5 @@ function handleError(res, reason, message, code) {
 }
 
 // Conexión a todas la rutas.
-//app.use('/api', producto);
-
+app.use('/api', EncargadoRecintos);
+app.use('/api', Recintos);

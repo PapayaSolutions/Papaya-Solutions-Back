@@ -4,17 +4,48 @@
 
 const mongoose = require('mongoose');
 const recintos_schema = new mongoose.Schema({
-    //   codigo: { type: String, required: true, unique: true },
 
     nombre: {
         type: String,
         required: true,
         unique: true
+    },
+    direccion: {
+        type: String,
+        required: true
+    },
+    canton: {
+        type: String,
+        required: true
+    },
+    provincia: {
+        type: String,
+        required: true
+    },
+    distrito: {
+        type: String,
+        required: true
+    },
+    capacidad: {
+        type: Number,
+        required: true
+    },
+    asientosTradicionales: {
+        type: Number,
+        required: true
+    },
+    asientosaccesibilidad: {
+        type: Number,
+        required: true
+    },
+    estado: {
+        type: String,
+        required: true
     }
+
 
 
 });
 
-//Modelo en que se apoya, nombre de la conección den la base de datos
-//Le pase el nombre de la base de datos, el schema, y la coleccion
-module.exports = mongoose.model('papayadb', recintos_schema, 'recintos');
+///le pasamos como parametros, Modelo, Esquema, nombre de la coleccion en la db
+module.exports = mongoose.model('Recinto', recintos_schema, 'recintos');
