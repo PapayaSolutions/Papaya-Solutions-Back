@@ -12,7 +12,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
         nombre: body.nombre,
         numero: body.numero,
         correo: body.correo,
-        FechaNacimiento: body.FechaNacimiento,
+        fecha_nacimiento: body.fecha_nacimiento,
         genero: body.genero,
         contrasena: body.contrasena,
         tipo: "Encargado de recinto",

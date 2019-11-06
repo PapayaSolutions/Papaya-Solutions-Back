@@ -20,7 +20,7 @@ const encargados_recintos_schema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    fechaNacimiento: {
+    fecha_nacimiento: {
         //    required: true,
         format: Date
     },
