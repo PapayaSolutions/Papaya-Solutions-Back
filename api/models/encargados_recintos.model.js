@@ -34,6 +34,7 @@ const encargados_recintos_schema = new mongoose.Schema({
     },
     codigov: {
         type: String,
+        required: true
     },
     tipo: {
         type: String,
