@@ -6,9 +6,39 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-//Se declaran todos los accesos de los archivos routes.
+//Se declaran todos los accesos de los archivos routes. Will
 const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
+
+
+
+
+
+//Se declaran todos los accesos de los archivos routes Francisco
+const Evento = require('./routes/evento.route');
+
+
+
+
+//Se declaran todos los accesos de los archivos routes Daniel
+
+
+
+
+
+
+//Se declaran todos los accesos de los archivos routes Andres
+
+
+
+
+
+//Se declaran todos los accesos de los archivos routes Francisco
+
+
+
+
+//Se declaran todos los accesos de los archivos routes Marco
 
 
 const app = express();
@@ -53,21 +83,30 @@ function handleError(res, reason, message, code) {
     res.status(code || 500).json({ "error": message });
 }
 
-// Conexión a todas la rutas.
-
-
-
-
-
-
-
-
-
-
-
-
-
-const evento = require('./routes/evento.route');
-app.use('/api', evento);
+// Conexión a todas la rutas Will
 app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
+
+
+
+
+// Conexión a todas la rutas Francisco
+app.use('/api', Evento);
+
+
+
+
+//Conexión a todas la rutas Daniel
+
+
+
+
+
+
+//Conexión a todas la rutas Andres
+
+
+
+
+
+//Conexión a todas la rutas Marco
