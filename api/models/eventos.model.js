@@ -3,16 +3,56 @@
 const mongoose = require('mongoose');
 
 const evento_schema = new mongoose.Schema({
-    evento_id: { type: Number, required: true, unique: true },
-    nombre: { type: String, required: true, unique: false },
-    fecha: { type: Date, required: true, unique: false },
-    recinto: { type: String, required: true, unique: false },
-    direccion: { type: String, required: true, unique: false },
-    precio: { type: Number, required: true, unique: false },
-    categoria: { type: String, required: true, unique: false },
-    descripcion: { type: String, required: true, unique: false },
-    estado: { type: String, required: true, unique: false },
-    organizador: { type: String, required: true, unique: false }
+
+    id: {
+        type: Number,
+        unique: true,
+        required: true
+    },
+    nombre: {
+        type: String,
+        required: true
+    },
+    tipo: {
+        type: String,
+        required: true
+    },
+    asistentes_esperados: {
+        type: Number,
+        required: true
+    },
+    fecha_disponible: {
+        // Cambiar a date
+        type: String
+    },
+    pais_evento: {
+        type: String,
+        required: true
+    },
+    recinto: {
+        type: String,
+        required: true
+    },
+    precio_entrada: {
+        type: Number,
+        required: true
+    },
+    cantidad_maxima_usuario: {
+        type: String
+    },
+
+    duracion: {
+        type: String,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    estado: {
+        type: String,
+        required: true
+    }
 
 });
 
