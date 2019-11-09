@@ -3,8 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
 const Evento = require('../models/eventos.model');
+
 
 
 router.get('/listar_evento', function(req, res) {
@@ -28,10 +28,8 @@ router.get('/listar_evento', function(req, res) {
 
 
 
-const express = require('express'),
-    router = express.Router(),
-    Evento = require('../models/eventos.model')
-const mongoose = require('mongoose');
+
+
 
 //registrar evento
 router.post('/registrar-evento', function(req, res) {
