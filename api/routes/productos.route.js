@@ -2,11 +2,11 @@
 
 const express = require('express'),
     router = express.Router(),
-    Producto = require('../models/productos.model')
-    const mongoose = require('mongoose');
+    Producto = require('../models/productos.model');
+const mongoose = require('mongoose');
 
 //registrar productos
-router.post('/registrar-producto', function(req, res){
+router.post('/registrar-producto', function(req, res) {
     let body = req.body;
     let nuevo_producto = new Producto({
         codigo: body.codigo,
@@ -16,14 +16,14 @@ router.post('/registrar-producto', function(req, res){
         estado: 'activo'
     });
     nuevo_producto.save(
-        function(err, productoBD){
-            if(err){
+        function(err, productoBD) {
+            if (err) {
                 res.json({
                     resultado: false,
                     msg: 'El producto no se pudo registrar, ocurrió el siguiente error',
                     err
                 })
-            }else{
+            } else {
                 res.json({
                     resultado: true,
                     productoBD
@@ -33,16 +33,16 @@ router.post('/registrar-producto', function(req, res){
 });
 
 //listar poroductos
-router.get('/listar-productos', function(req, res){
+router.get('/listar-productos', function(req, res) {
     Producto.find(
-        function(err, productoBD){
-            if(err){
+        function(err, productoBD) {
+            if (err) {
                 res.json({
                     resultado: false,
                     msg: 'No se encontraron productos',
                     err
                 });
-            }else{
+            } else {
                 res.json({
                     resultado: true,
                     productos: productoBD
