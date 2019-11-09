@@ -23,7 +23,7 @@ const evento_schema = new mongoose.Schema({
     },
     fecha_disponible: {
         // Cambiar a date
-        type: String
+        type: Date
     },
     pais_evento: {
         type: String,
@@ -38,7 +38,7 @@ const evento_schema = new mongoose.Schema({
         required: true
     },
     cantidad_maxima_usuario: {
-        type: String
+        type: Number
     },
 
     duracion: {

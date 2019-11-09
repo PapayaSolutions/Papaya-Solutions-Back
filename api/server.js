@@ -1,7 +1,7 @@
 'use strict';
 
-const express = require("express");
-const body_parser = require("body-parser");
+const express = require('express');
+const body_parser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
