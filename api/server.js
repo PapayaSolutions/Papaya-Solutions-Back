@@ -8,7 +8,7 @@ require('dotenv').config();
 
 //Se declaran todos los accesos de los archivos routes.
 // const producto = require('./routes/productos.route');
-const evento = require('./routes/evento.route');
+
 
 
 const app = express();
@@ -54,4 +54,18 @@ function handleError(res, reason, message, code) {
 }
 
 // Conexión a todas la rutas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+const evento = require('./routes/evento.route');
 app.use('/api', evento);
