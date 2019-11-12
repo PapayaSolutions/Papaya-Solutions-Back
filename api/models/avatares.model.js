@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const imagen_schema = new mongoose.Schema({
+const avatar_schema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
@@ -24,4 +24,4 @@ const imagen_schema = new mongoose.Schema({
 
 
 //Model, Schema en que se apoya , nombre de la coleccion en al base de datos
-module.exports = mongoose.model('Imagen', imagen_schema, 'imagenes');
+module.exports = mongoose.model('Avatar', avatar_schema, 'avatares');

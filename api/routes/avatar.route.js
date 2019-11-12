@@ -4,23 +4,23 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Imagen = require('../models/imagenes.model');
+const Avatar = require('../models/avatares.model');
 
 
 
-router.get('/listar_imagen', function(req, res) {
-    Evento.find(
-        function(err, imagenesBD) {
+router.get('/listar_avatar', function(req, res) {
+    Avatar.find(
+        function(err, avataresBD) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron Imagenes Registradas',
+                    msg: 'No se encontraron avatares registrados',
                     err
                 }); //json
             } else {
                 res.json({
                     resultado: true,
-                    eventos: imagenesBD
+                    avatares: avataresBD
                 }); //json
             } //if-else
         } //function
@@ -29,9 +29,9 @@ router.get('/listar_imagen', function(req, res) {
 
 
 //registrar imagen
-router.post('/registrar_imagen', function(req, res) {
+router.post('/registrar_avatar', function(req, res) {
     let body = req.body;
-    let nueva_imagen = new Imagen({
+    let nuevo_avatar = new Avatar({
         nombre: body.nombre,
         URL: body.URL,
         estado: true
@@ -39,18 +39,18 @@ router.post('/registrar_imagen', function(req, res) {
     });
 
 
-    nueva_imagen.save(
-        function(err, imagen) {
+    nuevo_avatar.save(
+        function(err, avatar) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'La imagen no se pudo registrar, ocurrió el siguiente error',
+                    msg: 'El avatar no se pudo registrar, ocurrió el siguiente error',
                     err
                 })
             } else {
                 res.json({
                     resultado: true,
-                    imagen
+                    avatar
                 })
             }
         });
