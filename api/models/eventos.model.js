@@ -13,7 +13,7 @@ const evento_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tipo: {
+    categoria: {
         type: String,
         required: true
     },
