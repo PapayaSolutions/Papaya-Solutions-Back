@@ -15,7 +15,7 @@ const imagen_schema = new mongoose.Schema({
 
     },
     estado: {
-        type: Boolean,
+        type: String,
         required: true,
         unique: false
     }
