@@ -18,7 +18,7 @@ const evento_schema = new mongoose.Schema({
     },
     fecha_disponible: {
         // Cambiar a date
-        type: Date
+        type: String
     },
     hora: {
         type: Number,
