@@ -40,13 +40,14 @@ router.post('/registrar-evento', function(req, res) {
         categoria: body.categoria,
         asistentes_esperados: body.asistentes_esperados,
         fecha_disponible: body.fecha_disponible,
+        hora: body.hora,
         pais_evento: body.pais_evento,
         recinto: body.recinto,
         precio_entrada: body.precio_entrada,
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         duracion: body.duracion,
         descripcion: body.descripcion,
-        estado: body.estado
+        estado: 'Activo'
 
     });
 
