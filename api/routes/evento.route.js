@@ -35,7 +35,6 @@ router.get('/listar_evento', function(req, res) {
 router.post('/registrar-evento', function(req, res) {
     let body = req.body;
     let nuevo_evento = new Evento({
-        id: body.id,
         nombre: body.nombre,
         categoria: body.categoria,
         asistentes_esperados: body.asistentes_esperados,
