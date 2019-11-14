@@ -43,7 +43,7 @@ const evento_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    URL: {
+    URL_imagen: {
         type: String,
         required: true
     },
