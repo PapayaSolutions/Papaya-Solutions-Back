@@ -17,7 +17,7 @@ router.post('/registrar-recinto', function(req, res) {
         capacidad: body.capacidad,
         asientos_tradicionales: body.asientos_tradicionales,
         asientos_accesibilidad: body.asientos_accesibilidad,
-        estado: 'activo'
+        estado: body.estado
     });
 
 
