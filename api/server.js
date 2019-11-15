@@ -22,6 +22,7 @@ const Avatar = require('./routes/avatar.route');
 
 
 //Se declaran todos los accesos de los archivos routes Daniel
+const TipodeEvento = require('./routes/tipos_de_evento.route');
 
 
 
@@ -100,7 +101,7 @@ app.use('/api', Avatar);
 
 //Conexión a todas la rutas Daniel
 
-
+app.use('/api', TipodeEvento);
 
 
 
