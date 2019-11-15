@@ -15,8 +15,8 @@ router.post('/registrar-recinto', function(req, res) {
         provincia: body.provincia,
         distrito: body.distrito,
         capacidad: body.capacidad,
-        asientosTradicionales: body.asientosTradicionales,
-        asientosaccesibilidad: body.asientosaccesibilidad,
+        asientos_tradicionales: body.asientos_tradicionales,
+        asientos_accesibilidad: body.asientos_accesibilidad,
         estado: 'activo'
     });
 
