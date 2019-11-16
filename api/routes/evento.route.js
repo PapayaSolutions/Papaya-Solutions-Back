@@ -38,14 +38,14 @@ router.post('/registrar-evento', function(req, res) {
         nombre: body.nombre,
         categoria: body.categoria,
         asistentes_esperados: body.asistentes_esperados,
-        fecha_disponible: body.fecha_disponible,
-        hora: body.hora,
+        //fecha_disponible se obtiene por metodo alterno router
         pais_evento: body.pais_evento,
         recinto: body.recinto,
         precio_entrada: body.precio_entrada,
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         duracion: body.duracion,
         descripcion: body.descripcion,
+        URL_imagen: body.URL_imagen,
         estado: 'Activo'
 
     });
@@ -66,6 +66,33 @@ router.post('/registrar-evento', function(req, res) {
                 })
             }
         });
+});
+
+router.post('agregar_fecha', function(req, res) {
+
+    Evento.update({ _id: req.body._id }, {
+            $push: {
+                'fecha_disponible': {
+                    fecha: req.body.fecha
+                }
+            }
+        },
+        function(error) {
+            if (error) {
+                return res.json({
+                    success: false,
+                    msj: 'No se pudo agregar la fecha',
+                    err
+                });
+            } else {
+                return res.json({
+                    success: true,
+                    msj: 'Se agregó correctamente la fecha'
+                });
+            }
+        }
+    )
+
 });
 
 module.exports = router;

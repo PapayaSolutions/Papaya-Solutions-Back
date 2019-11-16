@@ -16,7 +16,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
         genero: body.genero,
         contrasena: body.contrasena,
         codigov: body.codigov,
-        tipo: 'Encargado de recinto',
+        tipo: body.tipo,
         estado: body.estado
     });
 
@@ -38,25 +38,24 @@ router.post('/registrar-encargado-recinto', function(req, res) {
         });
 });
 
-//listar encargados de recintos
-router.get('/listar-encargados-recintos', function(req, res) {
-    EncargadoRecinto.find(
-        function(err, encargados_recintos) {
-            if (err) {
+/*listar poroductos
+router.get('/listar-productos', function(req, res){
+    Producto.find(
+        function(err, productoBD){
+            if(err){
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron recintos',
+                    msg: 'No se encontraron productos',
                     err
                 });
-            } else {
+            }else{
                 res.json({
                     resultado: true,
-                    encargados_recintos: encargados_recintos
+                    productos: productoBD
                 })
             }
         }
     );
-});
-
+});*/
 
 module.exports = router;
