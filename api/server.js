@@ -31,7 +31,7 @@ const TipodeEvento = require('./routes/tipos_de_evento.route');
 
 
 //Se declaran todos los accesos de los archivos routes Andres
-
+const Cliente = require('./routes/clientes.route');
 
 
 
@@ -109,7 +109,7 @@ app.use('/api', TipodeEvento);
 
 
 //Conexión a todas la rutas Andres
-
+app.use('/api', Cliente);
 
 
 
