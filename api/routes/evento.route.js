@@ -7,11 +7,8 @@ const Evento = require('../models/eventos.model');
 
 
 
-router.get('/listar_evento/:_id', function(req, res) {
-
-    let _id = req.params._id;
-
-    Evento.find({ _id: _id },
+router.get('/listar_evento', function(req, res) {
+    Evento.find(
         function(err, eventosBD) {
             if (err) {
                 res.json({
@@ -28,29 +25,6 @@ router.get('/listar_evento/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
-
-router.get('/listar_evento2', function(req, res) {
-
-    let _id = req.query._id;
-
-    Evento.find({ _id: _id },
-        function(err, eventosBD) {
-            if (err) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se encontraron Eventos Registrados con ese ID',
-                    err
-                }); //json
-            } else {
-                res.json({
-                    resultado: true,
-                    evento: eventosBD
-                }); //json
-            } //if-else
-        } //function
-    ); //find
-}); //get
-
 
 
 
@@ -125,5 +99,50 @@ router.post('/agregar-fecha', function(req, res) {
     }
 
 });
+
+router.get('/listar_evento_id/:_id', function(req, res) {
+
+    let _id = req.params._id;
+
+    Evento.find({ _id: _id },
+        function(err, eventosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    evento: eventosBD
+                }); //json
+            } //if-else
+        } //function
+    ); //find
+}); //get
+
+router.get('/listar_evento_idq', function(req, res) {
+
+    let _id = req.query._id;
+
+    Evento.find({ _id: _id },
+        function(err, eventosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    evento: eventosBD
+                }); //json
+            } //if-else
+        } //function
+    ); //find
+}); //get
+
 
 module.exports = router;
