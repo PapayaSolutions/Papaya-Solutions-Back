@@ -98,8 +98,8 @@ app.use('/api', Evento)
 
 
 //Conexión a todas la rutas Daniel
-
 app.use('/api', TipodeEvento)
+
 
 
 
