@@ -46,24 +46,25 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
-/*listar poroductos
-router.get('/listar-productos', function(req, res){
-    Producto.find(
-        function(err, productoBD){
-            if(err){
+
+router.get('/listar_clientes', function(req, res) {
+    Cliente.find(
+        function(err, clientesBD) {
+            if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron productos',
+                    msg: 'No se encontraron clientes registrados',
                     err
-                });
-            }else{
+                }); //json
+            } else {
                 res.json({
                     resultado: true,
-                    productos: productoBD
-                })
-            }
-        }
-    );
-});*/
+                    clientes: clientesBD
+                }); //json
+            } //if-else
+        } //function
+    ); //find
+}); //get
+
 
 module.exports = router;
