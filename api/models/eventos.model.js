@@ -4,16 +4,11 @@ const mongoose = require('mongoose');
 
 const evento_schema = new mongoose.Schema({
 
-    id: {
-        type: Number,
-        unique: true,
-        required: true
-    },
     nombre: {
         type: String,
         required: true
     },
-    tipo: {
+    categoria: {
         type: String,
         required: true
     },
@@ -24,6 +19,10 @@ const evento_schema = new mongoose.Schema({
     fecha_disponible: {
         // Cambiar a date
         type: Date
+    },
+    hora: {
+        type: Number,
+        required: true
     },
     pais_evento: {
         type: String,

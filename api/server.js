@@ -16,11 +16,13 @@ const Recintos = require('./routes/recintos.route');
 
 //Se declaran todos los accesos de los archivos routes Francisco
 const Evento = require('./routes/evento.route');
+const Avatar = require('./routes/avatar.route');
 
 
 
 
 //Se declaran todos los accesos de los archivos routes Daniel
+const TipodeEvento = require('./routes/tipos_de_evento.route');
 
 
 
@@ -92,13 +94,14 @@ app.use('/api', Recintos);
 
 // Conexión a todas la rutas Francisco
 app.use('/api', Evento);
+app.use('/api', Avatar);
 
 
 
 
 //Conexión a todas la rutas Daniel
 
-
+app.use('/api', TipodeEvento);
 
 
 
