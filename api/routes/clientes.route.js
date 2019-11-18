@@ -5,14 +5,7 @@ const express = require('express'),
     Cliente = require('../models/clientes.model')
 const mongoose = require('mongoose');
 
-const nodeMailer = require('./nodemailer');
-const transporter = nodeMailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'pypsolutionscr@gmail.com',
-        pass: '7EjuAF8%',
-    }
-});
+const nodeMailer = require('nodemailer');
 
 //registrar cliente
 router.post('/registrar-cliente', function(req, res) {
@@ -51,6 +44,13 @@ router.post('/registrar-cliente', function(req, res) {
                     resultado: true,
                     clienteBD
                 })
+                const transporter = nodeMailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'pypsolutionscr@gmail.com',
+                        pass: '7EjuAF8%',
+                    }
+                });
             }
         });
 });

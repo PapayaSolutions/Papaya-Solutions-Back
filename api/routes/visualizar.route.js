@@ -2,7 +2,7 @@
 
 const express = require('express'),
     router = express.Router(),
-    Cliente = require('../models/clientes.model')
+    Cliente = require('../models/visualizar.model')
 const mongoose = require('mongoose');
 
 router.get('/ver-perfil/', function(req, res) {
@@ -10,7 +10,7 @@ router.get('/ver-perfil/', function(req, res) {
 
     let correo_cliente = req.params.correo_cliente;
 
-    Cliente.find({ correo_cliente: correo_cliente }, function(err, clienteBD) {
+    Cliente.findOne({ correo_cliente: correo_cliente }, function(err, clienteBD) {
         if (err) {
             return res.json({
                 success: false,
