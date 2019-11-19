@@ -19,7 +19,7 @@ router.get('/listar_evento', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    evento: eventosBD
+                    eventos: eventosBD
                 }); //json
             } //if-else
         } //function
@@ -115,9 +115,9 @@ router.get('/listar_evento_id/:_id', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    evento: eventosBD
+                    eventos: eventosBD
                 }); //json
-            } //if-else
+            } //if-elses
         } //function
     ); //find
 }); //get
@@ -137,7 +137,7 @@ router.get('/listar_evento_idq', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    evento: eventosBD
+                    eventos: eventosBD
                 }); //json
             } //if-else
         } //function
