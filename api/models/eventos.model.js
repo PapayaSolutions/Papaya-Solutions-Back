@@ -16,14 +16,9 @@ const evento_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    fecha_disponible: {
-        // Cambiar a date
-        type: Date
-    },
-    hora: {
-        type: Number,
-        required: true
-    },
+    fecha_disponible: [{
+        fecha: { type: Date, required: true, unique: false }
+    }],
     pais_evento: {
         type: String,
         required: true
@@ -48,8 +43,8 @@ const evento_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    hora: {
-        type: Number,
+    URL_imagen: {
+        type: String,
         required: true
     },
     estado: {

@@ -45,7 +45,7 @@ router.get('/listar-encargados-recintos', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron recintos',
+                    msg: 'No se encontraron encargados de recintos',
                     err
                 });
             } else {

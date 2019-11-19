@@ -13,7 +13,7 @@ router.get('/listar_evento', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron Eventos Registrados',
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
                     err
                 }); //json
             } else {
@@ -29,8 +29,6 @@ router.get('/listar_evento', function(req, res) {
 
 
 
-
-
 //registrar evento
 router.post('/registrar-evento', function(req, res) {
     let body = req.body;
@@ -38,15 +36,14 @@ router.post('/registrar-evento', function(req, res) {
         nombre: body.nombre,
         categoria: body.categoria,
         asistentes_esperados: body.asistentes_esperados,
-        fecha_disponible: body.fecha_disponible,
-        hora: body.hora,
+        //fecha_disponible se obtiene por metodo alterno router
         pais_evento: body.pais_evento,
         recinto: body.recinto,
         precio_entrada: body.precio_entrada,
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         duracion: body.duracion,
         descripcion: body.descripcion,
-        hora: body.hora,
+        URL_imagen: body.URL_imagen,
         estado: 'Activo'
 
     });
@@ -68,5 +65,84 @@ router.post('/registrar-evento', function(req, res) {
             }
         });
 });
+
+router.post('/agregar-fecha', function(req, res) {
+    if (req.body._id) {
+        Evento.update({ _id: req.body._id }, {
+                $push: {
+                    'fecha_disponible': {
+                        fecha: req.body.fecha
+                    }
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'No se pudo agregar la fecha',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'Se agregó correctamente la fecha'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la fecha, por favor verifique que el _id sea correcto'
+
+        });
+    }
+
+});
+
+router.get('/listar_evento_id/:_id', function(req, res) {
+
+    let _id = req.params._id;
+
+    Evento.find({ _id: _id },
+        function(err, eventosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    eventos: eventosBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
+router.get('/listar_evento_idq', function(req, res) {
+
+    let _id = req.query._id;
+
+    Evento.find({ _id: _id },
+        function(err, eventosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    eventos: eventosBD
+                }); //json
+            } //if-else
+        } //function
+    ); //find
+}); //get
+
 
 module.exports = router;
