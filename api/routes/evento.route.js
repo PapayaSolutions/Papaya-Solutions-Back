@@ -44,6 +44,7 @@ router.post('/registrar-evento', function(req, res) {
         duracion: body.duracion,
         descripcion: body.descripcion,
         URL_imagen: body.URL_imagen,
+        hora: body.hora,
         estado: 'Activo'
 
     });
