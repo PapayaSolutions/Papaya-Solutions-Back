@@ -19,7 +19,7 @@ router.get('/listar_evento', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    evento: eventosBD
+                    eventos: eventosBD
                 }); //json
             } //if-else
         } //function
