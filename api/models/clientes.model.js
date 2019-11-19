@@ -6,7 +6,7 @@ const cliente_schema = new mongoose.Schema({
     s_nombre: { type: String, required: false },
     p_apellido: { type: String, required: true },
     s_apellido: { type: String, required: false },
-    correo_cliente: { type: String, required: false, unique: true },
+    correo: { type: String, required: false, unique: true },
     identificacion: { type: Number, required: false, unique: true },
     f_nacimiento: { type: Date, required: false, unique: false },
     edad: { type: Number, required: false, unique: false },
@@ -18,7 +18,8 @@ const cliente_schema = new mongoose.Schema({
     contrasena: { type: String, required: false, unique: false },
     codigov: { type: String, required: true, unique: false },
     tipo: { type: String, required: true, unique: false },
-    estado: { type: String, required: true }
+    estado: { type: String, required: true },
+    url_imagen: { type: String, required: true, unique: false }
 });
 
 //Modelo en que se apoya, nombre de la conección den la base de datos

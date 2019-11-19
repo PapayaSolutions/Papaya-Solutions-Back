@@ -25,7 +25,8 @@ router.post('/registrar-cliente', function(req, res) {
         contrasena: body.contrasena,
         codigov: '123',
         tipo: "Cliente",
-        estado: 'activo'
+        estado: 'activo',
+        url_avatar: body.url_avatar
     });
 
 
@@ -46,24 +47,33 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
-/*listar poroductos
-router.get('/listar-productos', function(req, res){
-    Producto.find(
-        function(err, productoBD){
-            if(err){
+Cliente.validar = function(req, res) {
+    Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
+        function(clienteBD) {
+            if (clienteBD) {
+                if (clienteBD.contrasena == req.body.contrasena) {
+                    res.json({
+                        success: true,
+                        clienteBD: clienteBD
+                    });
+                } else {
+                    res.json({
+                        success: false
+                    });
+                }
+            } else {
                 res.json({
-                    resultado: false,
-                    msg: 'No se encontraron productos',
-                    err
+                    success: false,
+                    msg: 'El usuario no existe'
                 });
-            }else{
-                res.json({
-                    resultado: true,
-                    productos: productoBD
-                })
             }
         }
-    );
-});*/
+    )
+};
+
+router.route('/validar_credenciales')
+    .post(function(req, res) {
+        Cliente.validar(req, res);
+    });
 
 module.exports = router;
