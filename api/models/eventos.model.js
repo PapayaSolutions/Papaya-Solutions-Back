@@ -48,6 +48,10 @@ const evento_schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    hora: {
+        type: Number,
+        required: true
+    },
     estado: {
         type: String,
         required: true

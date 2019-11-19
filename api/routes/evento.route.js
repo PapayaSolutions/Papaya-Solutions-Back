@@ -46,6 +46,7 @@ router.post('/registrar-evento', function(req, res) {
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         duracion: body.duracion,
         descripcion: body.descripcion,
+        hora: body.hora,
         estado: 'Activo'
 
     });
