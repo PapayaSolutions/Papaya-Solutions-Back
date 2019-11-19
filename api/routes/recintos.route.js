@@ -37,4 +37,27 @@ router.post('/registrar-recinto', function(req, res) {
             }
         });
 });
+
+
+//listar poroductos
+router.get('/listar-recintos', function(req, res) {
+    Recinto.find(
+        function(err, recintos) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron recintos',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    recintos: recintos
+                })
+            }
+        }
+    );
+});
+
+
 module.exports = router;
