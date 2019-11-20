@@ -38,6 +38,14 @@ const recintos_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    latitud: {
+        type: String,
+        required: true
+    },
+    longitud: {
+        type: String,
+        required: true
+    },
     estado: {
         type: String,
         required: true
