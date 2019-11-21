@@ -16,24 +16,20 @@ const evento_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    fecha_disponible: {
-        type: String,
-        required: true,
-        unique: false
-    },
-    hora: {
-        type: String,
-        required: true,
-        unique: false
-    },
-    hora: {
-        type: Number,
-        required: true
-    },
-    pais_evento: {
-        type: String,
-        required: true
-    },
+
+    fecha_disponible: [{
+        fecha: {
+            type: String,
+            required: true,
+            unique: false
+        },
+        hora: {
+            type: String,
+            required: true,
+            unique: false
+        }
+    }],
+
     recinto: {
         type: String,
         required: true
@@ -51,12 +47,34 @@ const evento_schema = new mongoose.Schema({
     },
     URL_imagen: {
         type: String,
+    },
 
-    },
-    hora: {
-        type: String,
-        required: true
-    },
+    impuestos: [{
+        nombre: {
+            type: String,
+            required: true,
+            unique: false
+        },
+        porcentaje: {
+            type: Number,
+            required: true,
+            unique: false
+        }
+    }],
+
+    descuentos: [{
+        nombre: {
+            type: String,
+            required: true,
+            unique: false
+        },
+        porcentaje: {
+            type: Number,
+            required: true,
+            unique: false
+        }
+    }],
+
     estado: {
         type: String,
         required: true
