@@ -2,8 +2,10 @@
 
 const express = require('express'),
     router = express.Router(),
-    Cliente = require('../models/clientes.model')
+    Cliente = require('../models/clientes.model'),
+    passport = require('passport');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //registrar cliente
 router.post('/registrar-cliente', function(req, res) {
@@ -25,7 +27,8 @@ router.post('/registrar-cliente', function(req, res) {
         contrasena: body.contrasena,
         codigov: '123',
         tipo: "Cliente",
-        estado: 'activo'
+        estado: 'activo',
+        url_avatar: body.url_avatar
     });
 
 
@@ -47,6 +50,40 @@ router.post('/registrar-cliente', function(req, res) {
 });
 
 
+Cliente.validar = function(req, res) {
+    Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
+        function(clienteBD) {
+            // El usuario si existe
+            if (clienteBD) {
+                // La contraseña es correcta
+                if (clienteBD.contrasena == req.body.contrasena) {
+                    res.json({
+                        success: true,
+                        clienteBD: clienteBD
+                    });
+                    // La contraseña es incorrecta
+                } else {
+                    res.json({
+                        success: false
+                    });
+                }
+                // El usuario no existe
+            } else {
+                res.json({
+                    success: false,
+                    msg: 'El usuario no existe'
+                });
+            }
+        }
+    )
+};
+
+router.route('/validar_credenciales', )
+    .post(function(req, res) {
+        Cliente.validar(req, res);
+    });
+
+
 router.get('/listar_clientes', function(req, res) {
     Cliente.find(
         function(err, clientesBD) {
@@ -65,6 +102,7 @@ router.get('/listar_clientes', function(req, res) {
         } //function
     ); //find
 }); //get
+
 
 
 module.exports = router;

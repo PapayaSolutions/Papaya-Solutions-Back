@@ -26,6 +26,10 @@ const evento_schema = new mongoose.Schema({
         required: true,
         unique: false
     },
+    hora: {
+        type: Number,
+        required: true
+    },
     pais_evento: {
         type: String,
         required: true
