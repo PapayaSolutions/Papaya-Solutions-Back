@@ -68,12 +68,14 @@ router.post('/registrar-evento', function(req, res) {
 });
 
 router.post('/agregar-fecha', function(req, res) {
-    if (req.body._id) {
-        Evento.update({ _id: req.body._id }, {
+    if (req.body.nombre) {
+        Evento.update({ nombre: req.body.nombre }, {
                 $push: {
                     'fecha_disponible': {
-                        fecha: req.body.fecha
+                        fecha: req.body.fecha,
+                        hora: req.body.hora
                     }
+
                 }
             },
             function(error) {
@@ -123,27 +125,6 @@ router.get('/listar_evento_id/:_id', function(req, res) {
     ); //find
 }); //get
 
-router.get('/listar_evento_idq', function(req, res) {
-
-    let _id = req.query._id;
-
-    Evento.find({ _id: _id },
-        function(err, eventosBD) {
-            if (err) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se encontraron Eventos Registrados con ese ID',
-                    err
-                }); //json
-            } else {
-                res.json({
-                    resultado: true,
-                    eventos: eventosBD
-                }); //json
-            } //if-else
-        } //function
-    ); //find
-}); //get
 
 
 module.exports = router;
