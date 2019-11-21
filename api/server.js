@@ -20,6 +20,8 @@ const Recintos = require('./routes/recintos.route');
 //Se declaran todos los accesos de los archivos routes Francisco
 const Evento = require('./routes/evento.route');
 const Avatar = require('./routes/avatar.route');
+const Impuesto = require('./routes/impuestos.route');
+
 
 
 
@@ -103,6 +105,8 @@ app.use('/api', Recintos);
 // Conexión a todas la rutas Francisco
 app.use('/api', Evento);
 app.use('/api', Avatar);
+app.use('/api', Impuesto);
+
 
 
 

@@ -15,9 +15,11 @@ router.post('/registrar-recinto', function(req, res) {
         provincia: body.provincia,
         distrito: body.distrito,
         capacidad: body.capacidad,
-        asientosTradicionales: body.asientosTradicionales,
-        asientosaccesibilidad: body.asientosaccesibilidad,
-        estado: 'activo'
+        asientos_tradicionales: body.asientos_tradicionales,
+        asientos_accesibilidad: body.asientos_accesibilidad,
+        latitud: body.latitud,
+        longitud: body.longitud,
+        estado: body.estado
     });
 
 
@@ -37,4 +39,27 @@ router.post('/registrar-recinto', function(req, res) {
             }
         });
 });
+
+
+//listar poroductos
+router.get('/listar-recintos', function(req, res) {
+    Recinto.find(
+        function(err, recintos) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron recintos',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    recintos: recintos
+                })
+            }
+        }
+    );
+});
+
+
 module.exports = router;

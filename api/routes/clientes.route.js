@@ -49,6 +49,7 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
+
 Cliente.validar = function(req, res) {
     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
         function(clienteBD) {
@@ -81,5 +82,27 @@ router.route('/validar_credenciales', )
     .post(function(req, res) {
         Cliente.validar(req, res);
     });
+
+
+router.get('/listar_clientes', function(req, res) {
+    Cliente.find(
+        function(err, clientesBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron clientes registrados',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                }); //json
+            } //if-else
+        } //function
+    ); //find
+}); //get
+
+
 
 module.exports = router;
