@@ -2,8 +2,10 @@
 
 const express = require('express'),
     router = express.Router(),
-    Cliente = require('../models/clientes.model')
+    Cliente = require('../models/clientes.model'),
+    passport = require('passport');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //registrar cliente
 router.post('/registrar-cliente', function(req, res) {
@@ -50,17 +52,21 @@ router.post('/registrar-cliente', function(req, res) {
 Cliente.validar = function(req, res) {
     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
         function(clienteBD) {
+            // El usuario si existe
             if (clienteBD) {
+                // La contraseña es correcta
                 if (clienteBD.contrasena == req.body.contrasena) {
                     res.json({
                         success: true,
                         clienteBD: clienteBD
                     });
+                    // La contraseña es incorrecta
                 } else {
                     res.json({
                         success: false
                     });
                 }
+                // El usuario no existe
             } else {
                 res.json({
                     success: false,
@@ -71,7 +77,7 @@ Cliente.validar = function(req, res) {
     )
 };
 
-router.route('/validar_credenciales')
+router.route('/validar_credenciales', )
     .post(function(req, res) {
         Cliente.validar(req, res);
     });

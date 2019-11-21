@@ -19,7 +19,7 @@ const cliente_schema = new mongoose.Schema({
     codigov: { type: String, required: true, unique: false },
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
-    url_imagen: { type: String, required: true, unique: false }
+    url_avatar: { type: String, required: true, unique: false }
 });
 
 //Modelo en que se apoya, nombre de la conección den la base de datos
