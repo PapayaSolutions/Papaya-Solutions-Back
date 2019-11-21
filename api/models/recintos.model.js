@@ -30,12 +30,20 @@ const recintos_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    asientosTradicionales: {
+    asientos_tradicionales: {
         type: Number,
         required: true
     },
-    asientosaccesibilidad: {
+    asientos_accesibilidad: {
         type: Number,
+        required: true
+    },
+    latitud: {
+        type: String,
+        required: true
+    },
+    longitud: {
+        type: String,
         required: true
     },
     estado: {

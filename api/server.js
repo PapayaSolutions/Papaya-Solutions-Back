@@ -110,7 +110,6 @@ app.use('/api', Cliente);
 
 
 
-
 //Conexión a todas la rutas Marco
 app.use('/api', Visualizar);
 app.use('/api', Descuento);
