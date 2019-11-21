@@ -41,6 +41,7 @@ const Cliente = require('./routes/clientes.route');
 
 //Se declaran todos los accesos de los archivos routes Marco
 const Visualizar = require('./routes/visualizar.route');
+const Descuento = require('./routes/descuentos.route');
 
 const app = express();
 app.use(cors());
@@ -112,3 +113,4 @@ app.use('/api', Cliente);
 
 //Conexión a todas la rutas Marco
 app.use('/api', Visualizar);
+app.use('/api', Descuento);
