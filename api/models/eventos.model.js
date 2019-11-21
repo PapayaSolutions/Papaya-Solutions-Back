@@ -16,9 +16,16 @@ const evento_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    fecha_disponible: [{
-        fecha: { type: Date, required: true, unique: false }
-    }],
+    fecha_disponible: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    hora: {
+        type: String,
+        required: true,
+        unique: false
+    },
     pais_evento: {
         type: String,
         required: true
@@ -34,18 +41,13 @@ const evento_schema = new mongoose.Schema({
     cantidad_maxima_usuario: {
         type: Number
     },
-
-    duracion: {
-        type: String,
-        required: true
-    },
     descripcion: {
         type: String,
-        required: true
+        required: false
     },
     URL_imagen: {
         type: String,
-        required: true
+
     },
     hora: {
         type: Number,
