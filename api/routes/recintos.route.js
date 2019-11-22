@@ -61,5 +61,26 @@ router.get('/listar-recintos', function(req, res) {
     );
 });
 
+router.get('/listar_recinto_nombre/:nombre', function(req, res) {
+
+    let nombre = req.params.nombre;
+
+    Recinto.find({ nombre: nombre },
+        function(err, recintos) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron recintos registrados con ese nombre',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    recintos: recintos
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
 
 module.exports = router;
