@@ -4,9 +4,6 @@ const express = require('express');
 const body_parser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const passport = require('passport');
-const session = require('express-session');
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 //Se declaran todos los accesos de los archivos routes. Will
@@ -21,7 +18,6 @@ const Recintos = require('./routes/recintos.route');
 const Evento = require('./routes/evento.route');
 const Avatar = require('./routes/avatar.route');
 const Impuesto = require('./routes/impuestos.route');
-
 
 
 
@@ -51,11 +47,6 @@ const Cliente = require('./routes/clientes.route');
 const app = express();
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
-
-//dependencia de passport
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 
@@ -106,7 +97,6 @@ app.use('/api', Recintos);
 app.use('/api', Evento);
 app.use('/api', Avatar);
 app.use('/api', Impuesto);
-
 
 
 

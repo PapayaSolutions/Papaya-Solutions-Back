@@ -2,10 +2,10 @@
 
 const express = require('express'),
     router = express.Router(),
-    Cliente = require('../models/clientes.model'),
-    passport = require('passport');
+    Cliente = require('../models/clientes.model');
+//  passport = require('passport');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 //registrar cliente
 router.post('/registrar-cliente', function(req, res) {
