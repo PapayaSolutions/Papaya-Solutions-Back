@@ -143,7 +143,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
                         console.log(error);
 
                     } else {
-                        console.log('Correo enviado', +info.response);
+                        console.log('Correo enviado', info.response);
                     }
                 });
 
