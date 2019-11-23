@@ -16,12 +16,14 @@ const Recintos = require('./routes/recintos.route');
 
 //Se declaran todos los accesos de los archivos routes Francisco
 const Evento = require('./routes/evento.route');
+const Avatar = require('./routes/avatar.route');
+const Impuesto = require('./routes/impuestos.route');
 
 
 
 
 //Se declaran todos los accesos de los archivos routes Daniel
-
+const TipodeEvento = require('./routes/tipos_de_evento.route');
 
 
 
@@ -40,8 +42,7 @@ const Cliente = require('./routes/clientes.route');
 
 
 //Se declaran todos los accesos de los archivos routes Marco
-const Visualizar = require('./routes/visualizar.route');
-const Descuento = require('./routes/descuentos.route');
+
 
 const app = express();
 app.use(cors());
@@ -93,14 +94,16 @@ app.use('/api', Recintos);
 
 
 // Conexión a todas la rutas Francisco
-app.use('/api', Evento)
+app.use('/api', Evento);
+app.use('/api', Avatar);
+app.use('/api', Impuesto);
 
 
 
 
 //Conexión a todas la rutas Daniel
 
-
+app.use('/api', TipodeEvento);
 
 
 
@@ -110,6 +113,5 @@ app.use('/api', Cliente);
 
 
 
+
 //Conexión a todas la rutas Marco
-app.use('/api', Visualizar);
-app.use('/api', Descuento);

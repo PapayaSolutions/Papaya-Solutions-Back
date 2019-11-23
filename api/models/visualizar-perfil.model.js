@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const cliente_schema = new mongoose.Schema({
-    p_nombre: { type: String, required: true, unique: false },
+    p_nombre: { type: String, required: true, unique: true },
     s_nombre: { type: String, required: false },
     p_apellido: { type: String, required: true },
     s_apellido: { type: String, required: false },
@@ -15,7 +15,7 @@ const cliente_schema = new mongoose.Schema({
     canton: { type: String, required: false, unique: false },
     distrito: { type: String, required: false, unique: false },
     direccion: { type: String, required: false, unique: false },
-    contrasena: { type: String, required: false, unique: false },
+    contrasena: { type: String, required: true, unique: false },
     codigov: { type: String, required: true, unique: false },
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true }
