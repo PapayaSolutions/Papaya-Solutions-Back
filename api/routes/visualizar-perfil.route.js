@@ -25,7 +25,7 @@ router.post('/registrar-cliente', function(req, res) {
         contrasena: body.contrasena,
         codigov: '123',
         tipo: "Cliente",
-        estado: 'activo'
+        estado: 'Activo'
     });
 
 

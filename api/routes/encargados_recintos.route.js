@@ -1,9 +1,20 @@
 'use strict';
 
+const nodeMailer = require('nodemailer');
+
 const express = require('express'),
     router = express.Router(),
     EncargadoRecinto = require('../models/encargados_recintos.model')
 const mongoose = require('mongoose');
+
+
+const transporter = nodeMailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'pypsolutionscr@gmail.com',
+        pass: '7EjuAF8%01e',
+    }
+});
 
 //registrar encargado de recinto
 router.post('/registrar-encargado-recinto', function(req, res) {
@@ -30,6 +41,112 @@ router.post('/registrar-encargado-recinto', function(req, res) {
                     err
                 })
             } else {
+
+                let mailOptions = {
+
+                    from: 'pypsolutionscr@gmail.com',
+                    to: nuevo_encargado_recinto.correo,
+                    subject: 'Bienvenidos a Mishka, su pagína de favorita de eventos.',
+                    html: `<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Verificación de correo eléctronico</title>
+                        <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto&display=swap" rel="stylesheet">
+                    </head>
+                    <body>
+                        <main>
+                            <div class="fondo">
+                                <div class="verificacion">
+                                    <h1>¡Bienvenido a Mishka, ${nuevo_encargado_recinto.nombre} !</h1>
+                                </div>
+                                <div class="verificacion">
+                                    <p>Gracias por preferir nuestro sistema de ventas de tiquetes para tus eventos favoritos.</p>
+                                </div>
+                                <div class="verificacion">
+                                    <p>¡Tu correo ${nuevo_encargado_recinto.correo} ha sido verificados con éxito!</p>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn" id="btn_registro"><a href="iniciar_sesion.html">Ingresar</a></button>
+                                </div>
+                            </div>
+                        </main>
+                    </body> 
+                    </html>
+                    <style>
+                      body {
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 16px;
+                        color: #292c2a;
+                        background-image: url(../img/cover2.jpg);
+                        background-size: cover;
+                    }
+                    
+                    h1 {
+                        font-size: 20px;
+                        color: #ececec;
+                        border-bottom: 1px solid #f7882f;
+                    }
+                    
+                    p {
+                        font-size: 20px;
+                        color: #ececec;
+                    }
+                    
+                    .fondo {
+                        margin: 0 auto;
+                        margin-top: 10%;
+                        text-align: center;
+                        background: #292c2a;
+                        border: 2px solid #f7882f;
+                        height: 400px;
+                        width: 400px;
+                        border-radius: 1rem;
+                        opacity: 0.9;
+                    }
+                    
+                    .verificacion {
+                        padding: 20px;
+                    }
+                    
+                    #btn_registro {
+                        background: #f7882f;
+                        font-size: 14px;
+                        letter-spacing: 3px;
+                        padding: 10px 25px;
+                        border-radius: 10rem;
+                        color: #ececec;
+                        overflow: hidden;
+                        margin-top: 10%;
+                    }
+                    
+                    #btn_registro:hover {
+                        background: #ececec;
+                        color: #f7882f;
+                        border: 1px solid #f7882f;
+                        box-sizing: border-box;
+                    }
+                    
+                    a {
+                        text-decoration: none;
+                        color: #292c2a;
+                    }
+                    
+                    a:hover {
+                        color: #f7882f;
+                    }
+                    </style>`
+                };
+
+                transporter.sendMail(mailOptions, function(error, info) {
+                    if (error) {
+                        console.log(error);
+
+                    } else {
+                        console.log('Correo enviado', +info.response);
+                    }
+                });
+
                 res.json({
                     resultado: true,
                     productoBD //falta esto
