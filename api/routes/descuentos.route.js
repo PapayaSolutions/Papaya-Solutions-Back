@@ -12,7 +12,7 @@ router.post('/descuentos', function(req, res) {
         nombre: body.nombre,
         descripcion: body.descripcion,
         porcentaje: body.porcentaje,
-        estado: 'activo'
+        estado: body.estado
     });
 
     nuevo_descuento.save(function(err, descuentoBD) {
