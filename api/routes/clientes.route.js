@@ -103,6 +103,27 @@ router.get('/listar_clientes', function(req, res) {
     ); //find
 }); //get
 
+router.get('/listar_clientes_id/:_id', function(req, res) {
+    let _id = req.params._id;
+
+    Cliente.find({ _id: _id },
+        function(err, clientesBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
 
 
 module.exports = router;
