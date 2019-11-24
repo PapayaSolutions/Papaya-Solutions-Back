@@ -73,7 +73,8 @@ router.post('/agregar-fecha', function(req, res) {
                 $push: {
                     'fecha_disponible': {
                         fecha: req.body.fecha,
-                        hora: req.body.hora
+                        hora: req.body.hora,
+                        hora_salida: req.body.hora_salida
                     }
 
                 }
