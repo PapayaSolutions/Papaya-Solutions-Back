@@ -10,6 +10,7 @@ require('dotenv').config();
 const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
 const Descuentos = require('./routes/descuentos.route');
+const Organizador = require('./routes/organizador.route');
 
 
 
@@ -91,7 +92,7 @@ function handleError(res, reason, message, code) {
 app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
 app.use('/api', Descuentos);
-
+app.use('/api', Organizador);
 
 
 
