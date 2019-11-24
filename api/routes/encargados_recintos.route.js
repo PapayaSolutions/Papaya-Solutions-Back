@@ -65,9 +65,10 @@ router.post('/registrar-encargado-recinto', function(req, res) {
                                 </div>
                                 <div class="verificacion">
                                     <p>¡Tu correo ${nuevo_encargado_recinto.correo} ha sido verificados con éxito!</p>
+                                    <p>¡Tu clave temporal es: ${nuevo_encargado_recinto.contrasena} </p>
                                 </div>
-                                <div>
-                                    <button type="button" class="btn" id="btn_registro"><a href="iniciar_sesion.html">Ingresar</a></button>
+                                <div>  
+                                    <button type="button" class="btn" id="btn_registro"> <a href="http://127.0.0.1:5500/iniciar_sesion.html">Iniciar Sesión</a> </button>
                                 </div>
                             </div>
                         </main>
@@ -143,7 +144,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
                         console.log(error);
 
                     } else {
-                        console.log('Correo enviado', +info.response);
+                        console.log('Correo enviado', info.response);
                     }
                 });
 
