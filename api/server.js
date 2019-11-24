@@ -9,6 +9,8 @@ require('dotenv').config();
 //Se declaran todos los accesos de los archivos routes. Will
 const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
+const Descuentos = require('./routes/descuentos.route');
+const Organizador = require('./routes/organizador.route');
 
 
 
@@ -89,7 +91,8 @@ function handleError(res, reason, message, code) {
 // Conexión a todas la rutas Will
 app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
-
+app.use('/api', Descuentos);
+app.use('/api', Organizador);
 
 
 
