@@ -46,13 +46,13 @@ router.get('/listar_organizador', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron productos',
+                    msg: 'No se encontraron organizadores',
                     err
                 });
             } else {
                 res.json({
                     resultado: true,
-                    descuentos: organizador
+                    organizador: organizador
                 })
             }
         }
