@@ -13,7 +13,8 @@ const descuento_schema = new mongoose.Schema({
     distrito: { type: String, required: true },
     direccion: { type: String, required: true },
     experiencia: { type: String, required: true },
-    estado: { type: String, required: true }
+    estado: { type: String, required: true },
+    tipo: { type: String, required: true }
 });
 
 //Modelo en que se apoya, nombre de la conección den la base de datos

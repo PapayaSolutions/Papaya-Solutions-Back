@@ -20,7 +20,8 @@ router.post('/registrar-organizador', function(req, res) {
         distrito: body.direccion,
         direccion: body.direccion,
         experiencia: body.experiencia,
-        estado: body.estado
+        estado: body.estado,
+        tipo: body.tipo
     });
 
     nuevo_organizador.save(function(err, organizador) {

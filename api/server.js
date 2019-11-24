@@ -11,6 +11,7 @@ const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
 const Descuentos = require('./routes/descuentos.route');
 const Organizador = require('./routes/organizador.route');
+const Admin = require('./routes/admin.route');
 
 
 
@@ -93,7 +94,7 @@ app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
 app.use('/api', Descuentos);
 app.use('/api', Organizador);
-
+app.use('/api', Admin);
 
 
 // Conexión a todas la rutas Francisco
