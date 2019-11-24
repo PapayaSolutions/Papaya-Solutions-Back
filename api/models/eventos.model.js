@@ -27,6 +27,11 @@ const evento_schema = new mongoose.Schema({
             type: String,
             required: true,
             unique: false
+        },
+        hora_salida: {
+            type: String,
+            required: true,
+            unique: false
         }
     }],
 
