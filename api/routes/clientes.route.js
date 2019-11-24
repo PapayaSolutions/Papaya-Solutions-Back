@@ -54,6 +54,7 @@ Cliente.validar = function(req, res) {
     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
         function(clienteBD) {
             // El usuario si existe
+            console.log(clienteBD);
             if (clienteBD) {
                 // La contraseña es correcta
                 if (clienteBD.contrasena == req.body.contrasena) {
@@ -78,7 +79,7 @@ Cliente.validar = function(req, res) {
     )
 };
 
-router.route('/validar_credenciales', )
+router.route('/validar_credenciales')
     .post(function(req, res) {
         Cliente.validar(req, res);
     });
