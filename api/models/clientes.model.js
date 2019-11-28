@@ -16,7 +16,7 @@ const cliente_schema = new mongoose.Schema({
     distrito: { type: String, required: false, unique: false },
     direccion: { type: String, required: false, unique: false },
     contrasena: { type: String, required: false, unique: false },
-    codigov: { type: String, required: true, unique: false },
+    codigov: { type: String, required: false, unique: false },
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
     url_avatar: { type: String, required: true, unique: false }

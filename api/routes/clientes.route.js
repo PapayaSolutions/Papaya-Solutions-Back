@@ -104,7 +104,7 @@ router.get('/listar_clientes', function(req, res) {
     ); //find
 }); //get
 
-router.get('/listar_clientes_id/:_id', function(req, res) {
+router.get('/listar_cliente_id/:_id', function(req, res) {
     let _id = req.params._id;
 
     Cliente.find({ _id: _id },
