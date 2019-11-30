@@ -46,6 +46,9 @@ const evento_schema = new mongoose.Schema({
     cantidad_maxima_usuario: {
         type: Number
     },
+    cantidad_entradas_restante: {
+        type: Number
+    },
     descripcion: {
         type: String,
         required: false
@@ -79,6 +82,9 @@ const evento_schema = new mongoose.Schema({
             unique: false
         }
     }],
+    organizador: {
+        type: String
+    },
 
     estado: {
         type: String,
