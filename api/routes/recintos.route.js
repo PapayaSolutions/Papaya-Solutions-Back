@@ -83,4 +83,29 @@ router.get('/listar_recinto_nombre/:nombre', function(req, res) {
     ); //find
 }); //get
 
+router.get('/listar_recinto_id/:_id', function(req, res) {
+
+    let _id = req.params._id;
+
+    Recinto.find({ _id: _id },
+        function(err, recintos) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron recintos registrados con ese id',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    recintos: recintos
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
+
+
+
 module.exports = router;
