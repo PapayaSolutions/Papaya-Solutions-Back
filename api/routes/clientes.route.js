@@ -167,7 +167,7 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
-router.post('/registrar_tarjeta', function(req, res) {
+router.post('/registrar_tarjetas', function(req, res) {
     if (req.body._id) {
         Cliente.update({ _id: req.body._id }, {
                 $push: {
