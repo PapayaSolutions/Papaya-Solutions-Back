@@ -39,7 +39,7 @@ router.post('/registrar-cliente', function(req, res) {
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
-        url_avatar: body.url_avatar
+        url_avatar: body.url_avatar,
     });
 
 
@@ -171,14 +171,10 @@ router.post('/registrar_tarjeta', function(req, res) {
     if (req.body._id) {
         Cliente.update({ _id: req.body._id }, {
                 $push: {
-                    'tarjetas': {
+                    'metodo_pago': {
                         tarjeta: req.body.tarjeta,
-                        nombre: req.body.nombre,
                         codigo: req.body.codigo,
-                        vencimiento: req.body.vencimiento,
-                        apellido: req.body.apellido,
-                        postal: req.body.postal,
-                        estado: 'activo'
+                        estado: 'Activo'
                     }
                 }
             },

@@ -20,14 +20,14 @@ const cliente_schema = new mongoose.Schema({
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
     url_avatar: { type: String, required: true, unique: false },
-    tarjetas: [{
+    metodo_pago: [{
         tarjeta: { type: Number, required: true, unique: true },
-        nombre: { type: String, required: true, unique: false },
-        codigo: { type: Number, required: true, unique: true },
-        vencimiento: { type: Number, required: true, unique: false },
-        apellido: { type: String, required: true, unique: false },
-        postal: { type: Number, required: true, unique: false },
-        estado: { type: String, required: true }
+        nombre: { type: String, required: false, unique: false },
+        codigo: { type: Number, required: false, unique: true },
+        vencimiento: { type: Number, required: false, unique: false },
+        apellido: { type: String, required: false, unique: false },
+        postal: { type: Number, required: false, unique: false },
+        estado: { type: String, required: false }
     }]
 
 });
