@@ -167,6 +167,45 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
+router.post('/registrar_tarjeta', function(req, res) {
+    if (req.body._id) {
+        Cliente.update({ _id: req.body._id }, {
+                $push: {
+                    'tarjetas': {
+                        tarjeta: req.body.tarjeta,
+                        nombre: req.body.nombre,
+                        codigo: req.body.codigo,
+                        vencimiento: req.body.vencimiento,
+                        apellido: req.body.apellido,
+                        postal: req.body.postal,
+                        estado: 'activo'
+                    }
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'No se pudo agregar la tarjeta',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'Se agregó correctamente la tarjeta'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la tarjeta, por favor verifique que el _id sea correcto'
+
+        });
+    }
+
+});
 
 Cliente.validar = function(req, res) {
     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
@@ -242,7 +281,5 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
-
-
 
 module.exports = router;
