@@ -20,7 +20,7 @@ const cliente_schema = new mongoose.Schema({
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
     url_avatar: { type: String, required: true, unique: false },
-    metodo_pago: [{
+    metodos_pago: [{
         tarjeta: { type: Number, required: true, unique: true },
         nombre: { type: String, required: false, unique: false },
         codigo: { type: Number, required: false, unique: true },

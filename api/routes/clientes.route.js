@@ -171,10 +171,14 @@ router.post('/registrar_tarjeta', function(req, res) {
     if (req.body._id) {
         Cliente.update({ _id: req.body._id }, {
                 $push: {
-                    'metodo_pago': {
+                    'metodos_pago': {
                         tarjeta: req.body.tarjeta,
+                        nombre: req.body.nombre,
                         codigo: req.body.codigo,
-                        estado: 'Activo'
+                        vencimiento: req.body.vencimiento,
+                        apellido: req.body.apellido,
+                        postal: req.body.postal,
+                        estado: 'activo'
                     }
                 }
             },
