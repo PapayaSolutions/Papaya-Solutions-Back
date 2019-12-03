@@ -46,11 +46,14 @@ const recintos_schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    url_imagen: {
+        type: String,
+        required: false
+    },
     estado: {
         type: String,
         required: true
     }
-
 
 
 });
