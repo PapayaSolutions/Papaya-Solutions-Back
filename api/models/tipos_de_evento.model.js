@@ -11,6 +11,11 @@ const tipos_de_evento_schema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    URL: {
+        type: String,
+        required: true,
+        unique: true
+    },
     estado: {
         type: String,
         required: true
