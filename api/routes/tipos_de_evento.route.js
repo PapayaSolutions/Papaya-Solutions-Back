@@ -11,6 +11,7 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
     let nuevo_tipo_de_evento = new TipodeEvento({
 
         nombre: body.nombre,
+        URL: body.URL,
         estado: 'activo'
     });
     nuevo_tipo_de_evento.save(
@@ -18,7 +19,7 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'El producto no se pudo registrar, ocurrió el siguiente error',
+                    msg: 'La categoría no se pudo registrar, ocurrió el siguiente error',
                     err
                 })
             } else {
@@ -32,22 +33,25 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
 
 //listar eventos
 router.get('/listar_tipos_de_evento', function(req, res) {
+
     TipodeEvento.find(
-        function(err, productoBD) {
+        function(err, tiposBD) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron productos',
+                    msg: 'No se encontraron categorías de evento',
                     err
                 });
             } else {
                 res.json({
                     resultado: true,
-                    productos: productoBD
+                    tipos: tiposBD
                 })
             }
         }
     );
+
 });
+
 
 module.exports = router;
