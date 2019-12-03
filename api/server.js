@@ -21,7 +21,7 @@ const Admin = require('./routes/admin.route');
 const Evento = require('./routes/evento.route');
 const Avatar = require('./routes/avatar.route');
 const Impuesto = require('./routes/impuestos.route');
-
+const Plataforma = require('./routes/plataforma.route');
 
 
 
@@ -102,7 +102,7 @@ app.use('/api', Admin);
 app.use('/api', Evento);
 app.use('/api', Avatar);
 app.use('/api', Impuesto);
-
+app.use('/api', Plataforma);
 
 
 

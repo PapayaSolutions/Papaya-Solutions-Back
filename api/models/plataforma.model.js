@@ -5,7 +5,8 @@ const plat_schema = new mongoose.Schema({
 
     nombre: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     razon: {
         type: String,
@@ -15,6 +16,7 @@ const plat_schema = new mongoose.Schema({
     cedula: {
         type: String,
         required: true,
+        unique: true,
 
     },
     direccion: {
@@ -46,6 +48,10 @@ const plat_schema = new mongoose.Schema({
         required: true
     },
     latitud: {
+        type: Number,
+        required: true
+    },
+    comision: {
         type: Number,
         required: true
     },
