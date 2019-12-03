@@ -19,7 +19,17 @@ const cliente_schema = new mongoose.Schema({
     codigov: { type: String, required: false, unique: false },
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
-    url_avatar: { type: String, required: true, unique: false }
+    url_avatar: { type: String, required: true, unique: false },
+    metodos_pago: [{
+        tarjeta: { type: Number, required: true, unique: true },
+        nombre: { type: String, required: false, unique: false },
+        codigo: { type: Number, required: false, unique: true },
+        vencimiento: { type: Number, required: false, unique: false },
+        apellido: { type: String, required: false, unique: false },
+        postal: { type: Number, required: false, unique: false },
+        estado: { type: String, required: false }
+    }]
+
 });
 
 //Modelo en que se apoya, nombre de la conección den la base de datos

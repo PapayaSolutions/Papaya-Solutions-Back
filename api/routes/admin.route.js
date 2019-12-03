@@ -53,4 +53,5 @@ router.get('/listar-admin', function(req, res) {
         }
     );
 });
+
 module.exports = router;
