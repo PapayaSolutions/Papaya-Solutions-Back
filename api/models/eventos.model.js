@@ -89,6 +89,10 @@ const evento_schema = new mongoose.Schema({
     estado: {
         type: String,
         required: true
+    },
+    participantes: {
+        type: Array,
+        default: []
     }
 
 });
