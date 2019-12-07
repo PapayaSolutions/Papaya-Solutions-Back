@@ -60,11 +60,11 @@ router.post('/registrar_plataforma', function(req, res) {
         });
 });
 
-router.post('/modificar-plataforma', function(req, res) {
+router.post('/modificar_plataforma', function(req, res) {
     let body = req.body;
     Plataforma.updateOne({ nombre: body.nombre }, {
             $set: {
-                nombre: body.nombre,
+
                 razon: body.razon,
                 cedula: body.cedula,
                 direccion: body.direccion,
@@ -75,7 +75,7 @@ router.post('/modificar-plataforma', function(req, res) {
                 logo: body.logo,
                 longitud: body.longitud,
                 latitud: body.latitud,
-
+                comision: body.comision,
             }
         },
         function(error, info) {
@@ -94,4 +94,6 @@ router.post('/modificar-plataforma', function(req, res) {
         }
     )
 });
+
+
 module.exports = router;
