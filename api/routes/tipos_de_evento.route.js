@@ -3,7 +3,7 @@
 const express = require('express'),
     router = express.Router(),
     TipodeEvento = require('../models/tipos_de_evento.model');
-const mongoose = require('mongoose');
+
 
 //registrar tipos de evento
 router.post('/registrar_tipos_de_evento', function(req, res) {
@@ -12,10 +12,10 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
 
         nombre: body.nombre,
         URL: body.URL,
-        estado: 'activo'
+        estado: 'Habilitado'
     });
     nuevo_tipo_de_evento.save(
-        function(err, productoBD) {
+        function(err, TiposBD) {
             if (err) {
                 res.json({
                     resultado: false,
@@ -25,7 +25,7 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    productoBD
+                    TiposBD
                 })
             }
         });
@@ -51,6 +51,32 @@ router.get('/listar_tipos_de_evento', function(req, res) {
         }
     );
 
+});
+//modificar 
+router.post('/modificar_tipo_de_evento', function(req, res) {
+    let body = req.body;
+    TipodeEvento.updateOne({ _id: body._id }, {
+            $set: {
+                nombre: body.nombre,
+                URL: body.URL,
+                estado: body.estado,
+            }
+        },
+        function(err, TiposBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el tipo de evento',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    TiposBD
+                })
+            }
+        }
+    )
 });
 
 
