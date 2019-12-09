@@ -105,6 +105,64 @@ router.get('/listar_recinto_id/:_id', function(req, res) {
     ); //find
 }); //get
 
+//Activar recinto
+router.post('/modificar-estado', function(req, res) {
+    let body = req.body;
+    Recinto.updateOne({ _id: body._id }, {
+            $set: {
+                estado: body.estado
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el recinto',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+//Editar informacion general recinto
+router.post('/modificar-recinto', function(req, res) {
+    let body = req.body;
+    Recinto.updateOne({ _id: body._id }, {
+            $set: {
+                nombre: body.nombre,
+                direccion: body.direccion,
+                canton: body.canton,
+                provincia: body.provincia,
+                distrito: body.distrito,
+                capacidad: body.capacidad,
+                asientos_tradicionales: body.asientos_tradicionales,
+                asientos_accesibilidad: body.asientos_accesibilidad,
+                latitud: body.latitud,
+                longitud: body.longitud,
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el recinto',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
 
 
 
