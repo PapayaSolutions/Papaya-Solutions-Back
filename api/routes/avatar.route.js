@@ -56,4 +56,56 @@ router.post('/registrar_avatar', function(req, res) {
         });
 });
 
+router.post('/habilitar_avatar', function(req, res) {
+    let body = req.body;
+    Avatar.updateOne({ _id: body._id }, {
+            $set: {
+
+                estado: 'true',
+
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo habilitar el avatar',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+router.post('/deshabilitar_avatar', function(req, res) {
+    let body = req.body;
+    Avatar.updateOne({ _id: body._id }, {
+            $set: {
+
+                estado: 'false',
+
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo deshabilitar el avatar',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
 module.exports = router;
