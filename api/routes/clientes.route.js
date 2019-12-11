@@ -26,7 +26,7 @@ router.post('/registrar-cliente', function(req, res) {
         s_nombre: body.s_nombre,
         p_apellido: body.p_apellido,
         s_apellido: body.s_apellido,
-        correo: body.correo,
+        correo_cliente: body.correo_cliente,
         identificacion: body.identificacion,
         f_nacimiento: body.f_nacimiento,
         edad: body.edad,
