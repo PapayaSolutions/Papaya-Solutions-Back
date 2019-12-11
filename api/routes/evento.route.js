@@ -126,6 +126,41 @@ router.get('/listar_evento_id/:_id', function(req, res) {
     ); //find
 }); //get
 
+router.post('/calificar', function(req, res) {
+    let body = req.body;
 
+    if (body.cliente_id) {
+        Evento.updateOne({ _id: body._id, 'calificaciones.usuario': body.cliente_id }, {
+                $set: {
+
+                    'calificaciones.$.calificacion': body.num,
+
+                }
+            },
+            function(error, info) {
+                if (error) {
+                    res.json({
+                        resultado: false,
+                        msg: 'No se pudo calificar el evento',
+                        err
+                    });
+                } else {
+                    res.json({
+                        resultado: true,
+                        msg: 'Evvento calificado exitosamente',
+                        info: info
+                    })
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo calificar el evento, por favor verifique que el cliente_id sea correcto'
+
+        });
+    }
+
+});
 
 module.exports = router;
