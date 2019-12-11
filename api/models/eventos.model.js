@@ -82,6 +82,23 @@ const evento_schema = new mongoose.Schema({
             unique: false
         }
     }],
+    calificaciones: [{
+        usuario: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        calificacion: {
+            type: Number,
+            required: false,
+            unique: false
+        },
+        comentario: {
+            type: String,
+            required: false,
+            unique: false
+        }
+    }],
     organizador: {
         type: String
     },
