@@ -5,14 +5,14 @@ const express = require('express'),
     User = require('../models/users.model');
 const mongoose = require('mongoose');
 
-//registrar cliente
-router.post('/registrar-user', function(req, res) {
+//registrar user cliente
+router.post('/registrar-user-cli', function(req, res) {
     let body = req.body;
     let nuevo_user = new User({
         correo: body.correo,
-        contrasena: body.contrasena,
+        contrasena: 'pass123',
         codigov: '123',
-        tipo: body.tipo,
+        tipo: "Cliente",
         estado: 'activo',
         preferencias: body.preferencias
     });
@@ -35,41 +35,67 @@ router.post('/registrar-user', function(req, res) {
         });
 });
 
+//registrar user organizador
+router.post('/registrar-user-org', function(req, res) {
+    let body = req.body;
+    let nuevo_user = new User({
+        correo: body.correo,
+        contrasena: 'pass123',
+        codigov: '123',
+        tipo: "Organizador",
+        estado: 'activo',
+        preferencias: body.preferencias
+    });
 
-router.post('/agregar-preferencias', function(req, res) {
-    if (req.body.correo) {
-        User.update({ correo: req.body.correo }, {
-                $push: {
-                    'preferencias': {
-                        categoria: req.body.categoria
-                    }
-                }
-            },
-            function(error) {
-                if (error) {
-                    return res.json({
-                        success: false,
-                        msj: 'No se pudo agregar la preferencia',
-                        err
-                    });
-                } else {
-                    return res.json({
-                        success: true,
-                        msj: 'Se agregó correctamente la preferencia'
-                    });
-                }
+
+    nuevo_user.save(
+        function(err, userBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'El usuario no se pudo registrar',
+                    err
+                })
+            } else {
+                res.json({
+                    resultado: true,
+                    userBD
+                })
             }
-        )
-    } else {
-        return res.json({
-            success: false,
-            msj: 'No se pudo agregar la preferencia, por favor verifique que el _id sea correcto'
-
         });
-    }
-
 });
 
+//registrar user encargado
+router.post('/registrar-user-enc', function(req, res) {
+    let body = req.body;
+    let nuevo_user = new User({
+        correo: body.correo,
+        contrasena: 'pass123',
+        codigov: '123',
+        tipo: "Encargado",
+        estado: 'activo',
+        preferencias: body.preferencias
+    });
+
+
+    nuevo_user.save(
+        function(err, userBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'El usuario no se pudo registrar',
+                    err
+                })
+            } else {
+                res.json({
+                    resultado: true,
+                    userBD
+                })
+            }
+        });
+});
+
+//login
 User.validar = function(req, res) {
     User.findOne({ correo: req.body.correo }).then(
         function(userBD) {
@@ -103,26 +129,6 @@ router.route('/validar_credenciales')
     .post(function(req, res) {
         User.validar(req, res);
     });
-
-
-// router.get('/listar_clientes', function(req, res) {
-//     Cliente.find(
-//         function(err, clientesBD) {
-//             if (err) {
-//                 res.json({
-//                     resultado: false,
-//                     msg: 'No se encontraron clientes registrados',
-//                     err
-//                 }); //json
-//             } else {
-//                 res.json({
-//                     resultado: true,
-//                     clientes: clientesBD
-//                 }); //json
-//             } //if-else
-//         } //function
-//     ); //find
-// }); //get
 
 
 
