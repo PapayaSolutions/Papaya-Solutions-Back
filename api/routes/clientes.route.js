@@ -281,5 +281,24 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
+router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
+    let correo_cliente = req.params.correo_cliente;
 
+    Cliente.find({ correo_cliente: correo_cliente },
+        function(err, clientesBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese mail',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
 module.exports = router;
