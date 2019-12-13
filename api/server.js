@@ -21,7 +21,7 @@ const Avatar = require('./routes/avatar.route');
 const Impuesto = require('./routes/impuestos.route');
 const Plataforma = require('./routes/plataforma.route');
 const Bitacora = require('./routes/bitacora.route');
-
+const Carrito = require('./routes/carrito.route');
 
 //Se declaran todos los accesos de los archivos routes Daniel
 const TipodeEvento = require('./routes/tipos_de_evento.route');
@@ -101,7 +101,7 @@ app.use('/api', Avatar);
 app.use('/api', Impuesto);
 app.use('/api', Plataforma);
 app.use('/api', Bitacora);
-
+app.use('/api', Carrito);
 
 //Conexión a todas la rutas Daniel
 

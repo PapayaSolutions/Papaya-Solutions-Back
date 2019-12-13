@@ -39,7 +39,7 @@ router.post('/registrar-cliente', function(req, res) {
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
-        url_avatar: body.url_avatar,
+        url_tarjeta: body.url_tarjeta,
     });
 
 
@@ -186,7 +186,7 @@ router.post('/editar_cliente', function(req, res) {
                 canton: body.canton,
                 distrito: body.distrito,
                 direccion: body.direccion,
-                url_avatar: body.url_avatar,
+                url_tarjeta: body.url_tarjeta,
 
             }
         },
@@ -344,6 +344,55 @@ router.post('/registrar_tarjeta', function(req, res) {
         });
     }
 
+});
+router.post('/habilitar_tarjeta', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: body._id, 'metodos_pago._id': body.tarjeta_id }, {
+            $set: {
+
+                'metodos_pago.$.estado': 'Activo',
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo habilitar la tarjeta',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+router.post('/deshabilitar_tarjeta', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: body._id, 'metodos_pago._id': body.tarjeta_id }, {
+            $set: {
+
+                'metodos_pago.$.estado': 'Inactivo',
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo deshabilitar la tarjeta',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 });
 
 module.exports = router;
