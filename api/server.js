@@ -9,9 +9,7 @@ require('dotenv').config();
 //Se declaran todos los accesos de los archivos routes. Will
 const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
-const Descuentos = require('./routes/descuentos.route');
 const Organizador = require('./routes/organizador.route');
-const Admin = require('./routes/admin.route');
 
 
 
@@ -46,7 +44,8 @@ const User = require('./routes/users.route');
 
 
 //Se declaran todos los accesos de los archivos routes Marco
-
+const Admin = require('./routes/admin.route');
+const Descuentos = require('./routes/descuentos.route');
 
 const app = express();
 app.use(cors());
@@ -93,9 +92,7 @@ function handleError(res, reason, message, code) {
 // Conexión a todas la rutas Will
 app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
-app.use('/api', Descuentos);
 app.use('/api', Organizador);
-app.use('/api', Admin);
 
 
 // Conexión a todas la rutas Francisco
@@ -121,3 +118,5 @@ app.use('/api', User);
 
 
 //Conexión a todas la rutas Marco
+app.use('/api', Descuentos);
+app.use('/api', Admin);
