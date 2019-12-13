@@ -167,45 +167,7 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
-router.post('/registrar_tarjeta', function(req, res) {
-    if (req.body._id) {
-        Cliente.update({ _id: req.body._id }, {
-                $push: {
-                    'metodos_pago': {
-                        tarjeta: req.body.tarjeta,
-                        nombre: req.body.nombre,
-                        codigo: req.body.codigo,
-                        vencimiento: req.body.vencimiento,
-                        apellido: req.body.apellido,
-                        postal: req.body.postal,
-                        estado: 'activo'
-                    }
-                }
-            },
-            function(error) {
-                if (error) {
-                    return res.json({
-                        success: false,
-                        msj: 'No se pudo agregar la tarjeta',
-                        err
-                    });
-                } else {
-                    return res.json({
-                        success: true,
-                        msj: 'Se agregó correctamente la tarjeta'
-                    });
-                }
-            }
-        )
-    } else {
-        return res.json({
-            success: false,
-            msj: 'No se pudo agregar la tarjeta, por favor verifique que el _id sea correcto'
 
-        });
-    }
-
-});
 
 router.post('/editar_cliente', function(req, res) {
     let body = req.body;
@@ -319,6 +281,7 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
+
 router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
     let correo_cliente = req.params.correo_cliente;
 
@@ -339,4 +302,48 @@ router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
         } //function
     ); //find
 }); //get
+
+
+
+router.post('/registrar_tarjeta', function(req, res) {
+    if (req.body.email) {
+        Cliente.update({ correo_cliente: req.body.email }, {
+                $push: {
+                    'metodos_pago': {
+                        tarjeta: req.body.tarjeta,
+                        nombre: req.body.nombre,
+                        codigo: req.body.codigo,
+                        vencimiento: req.body.vencimiento,
+                        apellido: req.body.apellido,
+                        postal: req.body.postal,
+                        estado: 'Activo'
+                    }
+
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'La tarjeta no se pudo registrar',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'La tarjeta se guardó con éxito'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la tarjeta, por favor verifique que el correo sea correcto'
+
+        });
+    }
+
+});
+
 module.exports = router;
