@@ -124,7 +124,7 @@ router.get('/listar_evento_id/:_id', function(req, res) {
             } //if-elses
         } //function
     ); //find
-}); //get
+}); //get 
 
 router.post('/calificar', function(req, res) {
     let body = req.body;
@@ -147,7 +147,7 @@ router.post('/calificar', function(req, res) {
                 } else {
                     res.json({
                         resultado: true,
-                        msg: 'Evvento calificado exitosamente',
+                        msg: 'Evento calificado exitosamente',
                         info: info
                     })
                 }
@@ -157,6 +157,40 @@ router.post('/calificar', function(req, res) {
         return res.json({
             success: false,
             msj: 'No se pudo calificar el evento, por favor verifique que el cliente_id sea correcto'
+
+        });
+    }
+
+});
+router.post('/comentar', function(req, res) {
+    let body = req.body;
+
+    if (body.cliente_id) {
+        Evento.updateOne({ _id: body._id, 'calificaciones.usuario': body.cliente_id }, {
+                $set: {
+                    'calificaciones.$.comentario': body.comentario,
+                }
+            },
+            function(error, info) {
+                if (error) {
+                    res.json({
+                        resultado: false,
+                        msg: 'No se pudo comentar el evento',
+                        err
+                    });
+                } else {
+                    res.json({
+                        resultado: true,
+                        msg: 'Evento comentado exitosamente',
+                        info: info
+                    })
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo comentar el evento, por favor verifique que el cliente_id sea correcto'
 
         });
     }
