@@ -25,8 +25,6 @@ router.get('/listar_impuesto', function(req, res) {
         } //function
     ); //find
 }); //get
-
-
 //registrar impuesto
 router.post('/registrar_impuesto', function(req, res) {
     let body = req.body;
@@ -37,8 +35,6 @@ router.post('/registrar_impuesto', function(req, res) {
         estado: 'Activo'
 
     });
-
-
     nuevo_impuesto.save(
         function(err, impuesto) {
             if (err) {
@@ -55,5 +51,53 @@ router.post('/registrar_impuesto', function(req, res) {
             }
         });
 });
+router.post('/modificar_impuesto', function(req, res) {
+    let body = req.body;
+    Impuesto.updateOne({ _id: body._id }, {
+            $set: {
+                nombre: body.nombre,
+                porcentaje: body.porcentaje,
+                descripcion: body.descripcion,
+                estado: body.estado,
+            }
+        },
+        function(err, ImpuestosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el impuesto',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    ImpuestosBD
+                })
+            }
+        }
+    )
+});
+router.get('/listar_impuesto_id', function(req, res) {
+
+    let _id = req.query._id;
+
+    Impuesto.findOne({ _id: _id },
+        function(err, impuestosBD) {
+            if (err) {
+                return res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Impuestos registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                return res.json({
+                    resultado: true,
+                    impuestos: impuestosBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
 
 module.exports = router;

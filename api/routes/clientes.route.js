@@ -26,7 +26,7 @@ router.post('/registrar-cliente', function(req, res) {
         s_nombre: body.s_nombre,
         p_apellido: body.p_apellido,
         s_apellido: body.s_apellido,
-        correo: body.correo,
+        correo_cliente: body.correo_cliente,
         identificacion: body.identificacion,
         f_nacimiento: body.f_nacimiento,
         edad: body.edad,
@@ -35,7 +35,7 @@ router.post('/registrar-cliente', function(req, res) {
         canton: body.canton,
         distrito: body.distrito,
         direccion: body.direccion,
-        contrasena: body.contrasena,
+        contrasena: 'pass123',
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
@@ -207,39 +207,39 @@ router.post('/registrar_tarjeta', function(req, res) {
 
 });
 
-Cliente.validar = function(req, res) {
-    Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
-        function(clienteBD) {
-            // El usuario si existe
-            console.log(clienteBD);
-            if (clienteBD) {
-                // La contraseña es correcta
-                if (clienteBD.contrasena == req.body.contrasena) {
-                    res.json({
-                        success: true,
-                        clienteBD: clienteBD
-                    });
-                    // La contraseña es incorrecta
-                } else {
-                    res.json({
-                        success: false
-                    });
-                }
-                // El usuario no existe
-            } else {
-                res.json({
-                    success: false,
-                    msg: 'El usuario no existe'
-                });
-            }
-        }
-    )
-};
+// Cliente.validar = function(req, res) {
+//     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
+//         function(clienteBD) {
+//             // El usuario si existe
+//             console.log(clienteBD);
+//             if (clienteBD) {
+//                 // La contraseña es correcta
+//                 if (clienteBD.contrasena == req.body.contrasena) {
+//                     res.json({
+//                         success: true,
+//                         clienteBD: clienteBD
+//                     });
+//                     // La contraseña es incorrecta
+//                 } else {
+//                     res.json({
+//                         success: false
+//                     });
+//                 }
+//                 // El usuario no existe
+//             } else {
+//                 res.json({
+//                     success: false,
+//                     msg: 'El usuario no existe'
+//                 });
+//             }
+//         }
+//     )
+// };
 
-router.route('/validar_credenciales')
-    .post(function(req, res) {
-        Cliente.validar(req, res);
-    });
+// router.route('/validar_credenciales')
+//     .post(function(req, res) {
+//         Cliente.validar(req, res);
+//     });
 
 
 router.get('/listar_clientes', function(req, res) {
@@ -281,5 +281,24 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
+router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
+    let correo_cliente = req.params.correo_cliente;
 
+    Cliente.find({ correo_cliente: correo_cliente },
+        function(err, clientesBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron Eventos Registrados con ese mail',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
 module.exports = router;

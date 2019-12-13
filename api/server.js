@@ -22,7 +22,7 @@ const Evento = require('./routes/evento.route');
 const Avatar = require('./routes/avatar.route');
 const Impuesto = require('./routes/impuestos.route');
 const Plataforma = require('./routes/plataforma.route');
-
+const Bitacora = require('./routes/bitacora.route');
 
 
 //Se declaran todos los accesos de los archivos routes Daniel
@@ -103,7 +103,7 @@ app.use('/api', Evento);
 app.use('/api', Avatar);
 app.use('/api', Impuesto);
 app.use('/api', Plataforma);
-
+app.use('/api', Bitacora);
 
 
 //Conexión a todas la rutas Daniel

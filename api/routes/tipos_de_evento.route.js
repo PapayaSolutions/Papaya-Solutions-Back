@@ -4,7 +4,6 @@ const express = require('express'),
     router = express.Router(),
     TipodeEvento = require('../models/tipos_de_evento.model');
 
-
 //registrar tipos de evento
 router.post('/registrar_tipos_de_evento', function(req, res) {
     let body = req.body;
@@ -30,10 +29,8 @@ router.post('/registrar_tipos_de_evento', function(req, res) {
             }
         });
 });
-
 //listar eventos
 router.get('/listar_tipos_de_evento', function(req, res) {
-
     TipodeEvento.find(
         function(err, tiposBD) {
             if (err) {
@@ -78,6 +75,4 @@ router.post('/modificar_tipo_de_evento', function(req, res) {
         }
     )
 });
-
-
 module.exports = router;
