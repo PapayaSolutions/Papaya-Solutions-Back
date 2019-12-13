@@ -207,6 +207,44 @@ router.post('/registrar_tarjeta', function(req, res) {
 
 });
 
+router.post('/editar_cliente', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: req.body._id }, {
+            $set: {
+
+                p_nombre: body.p_nombre,
+                s_nombre: body.s_nombre,
+                p_apellido: body.p_apellido,
+                s_apellido: body.s_apellido,
+                correo_cliente: body.correo_cliente,
+                identificacion: body.identificacion,
+                f_nacimiento: body.f_nacimiento,
+                genero: body.genero,
+                provincia: body.provincia,
+                canton: body.canton,
+                distrito: body.distrito,
+                direccion: body.direccion,
+                url_avatar: body.url_avatar,
+
+            }
+        },
+        function(error, clientesBD) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar la informacion del usuario',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                })
+            }
+        }
+    )
+});
+
 // Cliente.validar = function(req, res) {
 //     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
 //         function(clienteBD) {
