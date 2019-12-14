@@ -53,8 +53,42 @@ router.get('/buscar_carrito_usuario/:usuario', function(req, res) {
     ); //find
 }); //get 
 
+router.post('/agregar_evento', function(req, res) {
+    if (req.body.usuario) {
+        Carrito.update({ usuario: req.body.usuario }, {
+                $push: {
+                    'compras': {
+                        evento: req.body.evento,
+                        cantidad: req.body.cantidad
 
+                    }
 
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'No se pudo agregar el evento',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'Se agregó correctamente el evento'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar el evento, por favor verifique que el _id sea correcto'
+
+        });
+    }
+
+});
 
 
 

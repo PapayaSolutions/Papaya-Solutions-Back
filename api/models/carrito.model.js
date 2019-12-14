@@ -12,7 +12,7 @@ const carrito_schema = new mongoose.Schema({
         evento: {
             type: String,
             required: false,
-            unique: false
+            unique: true
         },
         cantidad: {
             type: String,
