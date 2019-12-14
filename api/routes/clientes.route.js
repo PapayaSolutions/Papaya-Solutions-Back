@@ -39,7 +39,7 @@ router.post('/registrar-cliente', function(req, res) {
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
-        url_avatar: body.url_avatar,
+        url_tarjeta: body.url_tarjeta,
     });
 
 
@@ -167,44 +167,44 @@ router.post('/registrar-cliente', function(req, res) {
         });
 });
 
-router.post('/registrar_tarjeta', function(req, res) {
-    if (req.body._id) {
-        Cliente.update({ _id: req.body._id }, {
-                $push: {
-                    'metodos_pago': {
-                        tarjeta: req.body.tarjeta,
-                        nombre: req.body.nombre,
-                        codigo: req.body.codigo,
-                        vencimiento: req.body.vencimiento,
-                        apellido: req.body.apellido,
-                        postal: req.body.postal,
-                        estado: 'activo'
-                    }
-                }
-            },
-            function(error) {
-                if (error) {
-                    return res.json({
-                        success: false,
-                        msj: 'No se pudo agregar la tarjeta',
-                        err
-                    });
-                } else {
-                    return res.json({
-                        success: true,
-                        msj: 'Se agregó correctamente la tarjeta'
-                    });
-                }
+
+
+router.post('/editar_cliente', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: req.body._id }, {
+            $set: {
+
+                p_nombre: body.p_nombre,
+                s_nombre: body.s_nombre,
+                p_apellido: body.p_apellido,
+                s_apellido: body.s_apellido,
+                correo_cliente: body.correo_cliente,
+                identificacion: body.identificacion,
+                f_nacimiento: body.f_nacimiento,
+                genero: body.genero,
+                provincia: body.provincia,
+                canton: body.canton,
+                distrito: body.distrito,
+                direccion: body.direccion,
+                url_tarjeta: body.url_tarjeta,
+
             }
-        )
-    } else {
-        return res.json({
-            success: false,
-            msj: 'No se pudo agregar la tarjeta, por favor verifique que el _id sea correcto'
-
-        });
-    }
-
+        },
+        function(error, clientesBD) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar la informacion del usuario',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    clientes: clientesBD
+                })
+            }
+        }
+    )
 });
 
 // Cliente.validar = function(req, res) {
@@ -281,6 +281,7 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
         } //function
     ); //find
 }); //get
+
 router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
     let correo_cliente = req.params.correo_cliente;
 
@@ -301,4 +302,97 @@ router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
         } //function
     ); //find
 }); //get
+
+
+
+router.post('/registrar_tarjeta', function(req, res) {
+    if (req.body.email) {
+        Cliente.update({ correo_cliente: req.body.email }, {
+                $push: {
+                    'metodos_pago': {
+                        tarjeta: req.body.tarjeta,
+                        nombre: req.body.nombre,
+                        codigo: req.body.codigo,
+                        vencimiento: req.body.vencimiento,
+                        apellido: req.body.apellido,
+                        postal: req.body.postal,
+                        estado: 'Activo'
+                    }
+
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'La tarjeta no se pudo registrar',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'La tarjeta se guardó con éxito'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la tarjeta, por favor verifique que el correo sea correcto'
+
+        });
+    }
+
+});
+router.post('/habilitar_tarjeta', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: body._id, 'metodos_pago._id': body.tarjeta_id }, {
+            $set: {
+
+                'metodos_pago.$.estado': 'Activo',
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo habilitar la tarjeta',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+router.post('/deshabilitar_tarjeta', function(req, res) {
+    let body = req.body;
+    Cliente.updateOne({ _id: body._id, 'metodos_pago._id': body.tarjeta_id }, {
+            $set: {
+
+                'metodos_pago.$.estado': 'Inactivo',
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo deshabilitar la tarjeta',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
 module.exports = router;

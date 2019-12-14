@@ -9,9 +9,7 @@ require('dotenv').config();
 //Se declaran todos los accesos de los archivos routes. Will
 const EncargadoRecintos = require('./routes/encargados_recintos.route');
 const Recintos = require('./routes/recintos.route');
-const Descuentos = require('./routes/descuentos.route');
 const Organizador = require('./routes/organizador.route');
-const Admin = require('./routes/admin.route');
 
 
 
@@ -23,7 +21,7 @@ const Avatar = require('./routes/avatar.route');
 const Impuesto = require('./routes/impuestos.route');
 const Plataforma = require('./routes/plataforma.route');
 const Bitacora = require('./routes/bitacora.route');
-
+const Carrito = require('./routes/carrito.route');
 
 //Se declaran todos los accesos de los archivos routes Daniel
 const TipodeEvento = require('./routes/tipos_de_evento.route');
@@ -46,7 +44,8 @@ const User = require('./routes/users.route');
 
 
 //Se declaran todos los accesos de los archivos routes Marco
-
+const Admin = require('./routes/admin.route');
+const Descuentos = require('./routes/descuentos.route');
 
 const app = express();
 app.use(cors());
@@ -93,9 +92,7 @@ function handleError(res, reason, message, code) {
 // Conexión a todas la rutas Will
 app.use('/api', EncargadoRecintos);
 app.use('/api', Recintos);
-app.use('/api', Descuentos);
 app.use('/api', Organizador);
-app.use('/api', Admin);
 
 
 // Conexión a todas la rutas Francisco
@@ -104,7 +101,7 @@ app.use('/api', Avatar);
 app.use('/api', Impuesto);
 app.use('/api', Plataforma);
 app.use('/api', Bitacora);
-
+app.use('/api', Carrito);
 
 //Conexión a todas la rutas Daniel
 
@@ -121,3 +118,5 @@ app.use('/api', User);
 
 
 //Conexión a todas la rutas Marco
+app.use('/api', Descuentos);
+app.use('/api', Admin);

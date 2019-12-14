@@ -13,7 +13,7 @@ router.post('/registrar-user-cli', function(req, res) {
         contrasena: 'pass123',
         codigov: '123',
         tipo: "Cliente",
-        estado: 'activo',
+        estado: 'Habilitado',
         preferencias: body.preferencias
     });
 
@@ -43,7 +43,7 @@ router.post('/registrar-user-org', function(req, res) {
         contrasena: 'pass123',
         codigov: '123',
         tipo: "Organizador",
-        estado: 'activo',
+        estado: 'Habilitado',
         preferencias: body.preferencias
     });
 
@@ -73,7 +73,7 @@ router.post('/registrar-user-enc', function(req, res) {
         contrasena: 'pass123',
         codigov: '123',
         tipo: "Encargado",
-        estado: 'activo',
+        estado: 'Habilitado',
         preferencias: body.preferencias
     });
 
@@ -124,6 +124,7 @@ User.validar = function(req, res) {
         }
     )
 };
+
 
 router.route('/validar_credenciales')
     .post(function(req, res) {

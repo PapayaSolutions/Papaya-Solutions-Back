@@ -54,4 +54,54 @@ router.get('/listar-admin', function(req, res) {
     );
 });
 
+router.get('/listar_admin_id', function(req, res) {
+
+    let _id = req.query._id;
+
+    Admin.findOne({ _id: _id },
+        function(err, admin) {
+            if (err) {
+                return res.json({
+                    resultado: false,
+                    msg: 'No se encontró admin registrado con ese ID',
+                    err
+                }); //json
+            } else {
+                return res.json({
+                    resultado: true,
+                    admin: admin
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
+router.post('/modificar_admin', function(req, res) {
+    let body = req.body;
+    Descuento.updateOne({ _id: body._id }, {
+            $set: {
+                nombre: body.nombre,
+                correo: body.correo,
+                contrasena: body.contrasena,
+                tipo: body.tipo,
+                estado: body.estado
+            }
+        },
+        function(err, admin) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el admin',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    admin
+                })
+            }
+        }
+    )
+});
+
 module.exports = router;
