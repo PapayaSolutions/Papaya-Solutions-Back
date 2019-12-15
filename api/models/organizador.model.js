@@ -3,7 +3,10 @@
 const mongoose = require('mongoose');
 const descuento_schema = new mongoose.Schema({
 
-    nombre: { type: String, required: true },
+    nombre1: { type: String, required: true },
+    nombre2: { type: String },
+    apellido1: { type: String, required: true },
+    apellido2: { type: String },
     correo: { type: String, required: true, unique: true },
     edad: { type: Number, required: true },
     genero: { type: String, required: true },

@@ -39,6 +39,7 @@ router.post('/registrar-cliente', function(req, res) {
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
+        url_avatar: body.url_avatar,
         url_tarjeta: body.url_tarjeta,
     });
 
@@ -186,6 +187,7 @@ router.post('/editar_cliente', function(req, res) {
                 canton: body.canton,
                 distrito: body.distrito,
                 direccion: body.direccion,
+                url_avatar: body.url_avatar,
                 url_tarjeta: body.url_tarjeta,
 
             }
