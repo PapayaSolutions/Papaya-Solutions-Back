@@ -78,13 +78,10 @@ router.get('/listar_admin_id', function(req, res) {
 
 router.post('/modificar_admin', function(req, res) {
     let body = req.body;
-    Descuento.updateOne({ _id: body._id }, {
+    Admin.updateOne({ _id: body._id }, {
             $set: {
-                nombre: body.nombre,
                 correo: body.correo,
                 contrasena: body.contrasena,
-                tipo: body.tipo,
-                estado: body.estado
             }
         },
         function(err, admin) {
@@ -97,7 +94,7 @@ router.post('/modificar_admin', function(req, res) {
             } else {
                 res.json({
                     resultado: true,
-                    admin
+                    admin: admin
                 })
             }
         }

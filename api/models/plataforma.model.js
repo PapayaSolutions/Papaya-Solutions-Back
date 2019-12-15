@@ -55,6 +55,10 @@ const plat_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    reserva: {
+        type: Number,
+        required: true
+    },
     telefonos: [{
         numero: {
             type: String,

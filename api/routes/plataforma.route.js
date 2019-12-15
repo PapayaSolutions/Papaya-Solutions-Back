@@ -40,6 +40,7 @@ router.post('/registrar_plataforma', function(req, res) {
         longitud: body.longitud,
         latitud: body.latitud,
         comision: body.comision,
+        reserva: body.reserva,
     });
 
 
@@ -76,6 +77,7 @@ router.post('/modificar_plataforma', function(req, res) {
                 longitud: body.longitud,
                 latitud: body.latitud,
                 comision: body.comision,
+                reserva: body.reserva,
             }
         },
         function(error, info) {
