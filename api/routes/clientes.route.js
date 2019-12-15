@@ -305,8 +305,6 @@ router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
     ); //find
 }); //get
 
-
-
 router.post('/registrar_tarjeta', function(req, res) {
     if (req.body.email) {
         Cliente.update({ correo_cliente: req.body.email }, {
