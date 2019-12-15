@@ -39,7 +39,7 @@ router.post('/registrar-cliente', function(req, res) {
         codigov: '123',
         tipo: "Cliente",
         estado: 'activo',
-        url_tarjeta: body.url_tarjeta,
+        url_avatar: body.url_avatar,
     });
 
 
@@ -302,8 +302,6 @@ router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
         } //function
     ); //find
 }); //get
-
-
 
 router.post('/registrar_tarjeta', function(req, res) {
     if (req.body.email) {
