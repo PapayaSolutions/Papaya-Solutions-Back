@@ -40,6 +40,7 @@ router.post('/registrar-cliente', function(req, res) {
         tipo: "Cliente",
         estado: 'activo',
         url_avatar: body.url_avatar,
+        url_tarjeta: body.url_tarjeta,
     });
 
 
@@ -186,6 +187,7 @@ router.post('/editar_cliente', function(req, res) {
                 canton: body.canton,
                 distrito: body.distrito,
                 direccion: body.direccion,
+                url_avatar: body.url_avatar,
                 url_tarjeta: body.url_tarjeta,
 
             }
@@ -269,7 +271,7 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    msg: 'No se encontraron clientes Registrados con ese ID',
                     err
                 }); //json
             } else {

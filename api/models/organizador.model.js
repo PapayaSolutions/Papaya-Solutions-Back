@@ -3,11 +3,14 @@
 const mongoose = require('mongoose');
 const descuento_schema = new mongoose.Schema({
 
-    nombre: { type: String, required: true },
+    p_nombre: { type: String, required: true },
+    s_nombre: { type: String },
+    p_apellido: { type: String, required: true },
+    s_apellido: { type: String },
     correo: { type: String, required: true, unique: true },
-    edad: { type: Number, required: true },
     genero: { type: String, required: true },
-    cedula: { type: Number, required: true },
+    identificacion: { type: Number, required: true },
+    nacimiento: { type: Date, required: true, unique: false },
     provincia: { type: String, required: true },
     canton: { type: String, required: true },
     distrito: { type: String, required: true },
