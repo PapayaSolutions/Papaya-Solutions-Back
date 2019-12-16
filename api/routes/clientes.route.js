@@ -271,7 +271,7 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    msg: 'No se encontraron clientes Registrados con ese ID',
                     err
                 }); //json
             } else {
