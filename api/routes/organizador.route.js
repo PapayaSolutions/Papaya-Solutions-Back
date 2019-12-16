@@ -85,4 +85,33 @@ router.get('/listar_organizador_id', function(req, res) {
     ); //find
 }); //get
 
+//registrar user organizador
+router.post('/registrar-user-org', function(req, res) {
+    let body = req.body;
+    let nuevo_user = new User({
+        correo: body.correo,
+        contrasena: body.contrasena,
+        codigov: body.codigov,
+        tipo: body.tipo,
+        estado: body.estado,
+    });
+
+
+    nuevo_user.save(
+        function(err, userBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'El usuario no se pudo registrar',
+                    err
+                })
+            } else {
+                res.json({
+                    resultado: true,
+                    userBD
+                })
+            }
+        });
+});
+
 module.exports = router;
