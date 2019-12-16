@@ -36,6 +36,7 @@ router.post('/registrar-evento', function(req, res) {
         nombre: body.nombre,
         categoria: body.categoria,
         asistentes_esperados: body.asistentes_esperados,
+        cantidad_entradas_restante: body.asistentes_esperados,
         fecha_disponible: body.fecha_disponible,
         hora: body.hora,
         pais_evento: body.pais_evento,
@@ -191,6 +192,69 @@ router.post('/comentar', function(req, res) {
         return res.json({
             success: false,
             msj: 'No se pudo comentar el evento, por favor verifique que el cliente_id sea correcto'
+
+        });
+    }
+
+});
+
+router.post('/restar_entradas', function(req, res) {
+    let body = req.body;
+    Evento.updateOne({ _id: body._id }, {
+            $set: {
+
+                cantidad_entradas_restante: body.num,
+
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar el evento',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+router.post('/agregar_compra', function(req, res) {
+    if (req.body._id) {
+        Evento.update({ _id: req.body._id }, {
+                $push: {
+                    'calificaciones': {
+                        usuario: req.body.usuario,
+                        calificacion: 3,
+                        comentario: ''
+                    }
+
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'No se pudo agregar la compra',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'Se agregó correctamente la compra'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la fecha, por favor verifique que el _id sea correcto'
 
         });
     }
