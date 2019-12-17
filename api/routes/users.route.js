@@ -173,9 +173,7 @@ router.post('/modificar-estado', function(req, res) {
     let body = req.body;
     User.updateOne({ _id: body._id }, {
             $set: {
-
                 estado: body.estado,
-
             }
         },
         function(error, info) {
