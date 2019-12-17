@@ -97,6 +97,10 @@ const evento_schema = new mongoose.Schema({
             type: String,
             required: false,
             unique: false
+        },
+        correo: {
+            type: String,
+
         }
     }],
     organizador: {
