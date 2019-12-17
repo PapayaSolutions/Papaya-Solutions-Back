@@ -44,6 +44,7 @@ router.post('/registrar-evento', function(req, res) {
         precio_entrada: body.precio_entrada,
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         descripcion: body.descripcion,
+        organizador: body.organizador,
         URL_imagen: body.URL_imagen,
         hora: body.hora,
         estado: 'Activo'
@@ -254,7 +255,44 @@ router.post('/agregar_compra', function(req, res) {
     } else {
         return res.json({
             success: false,
-            msj: 'No se pudo agregar la fecha, por favor verifique que el _id sea correcto'
+            msj: 'No se pudo agregar la compra, por favor verifique que el _id sea correcto'
+
+        });
+    }
+
+});
+
+router.post('/agregar_reserva', function(req, res) {
+    if (req.body._id) {
+        Evento.update({ _id: req.body._id }, {
+                $push: {
+                    'reservas': {
+                        usuario: req.body.usuario,
+                        cantidad: req.body.cantidad
+
+                    }
+
+                }
+            },
+            function(error) {
+                if (error) {
+                    return res.json({
+                        success: false,
+                        msj: 'No se pudo agregar la reserva',
+                        err
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        msj: 'Se agregó correctamente la reserva'
+                    });
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo agregar la reserva, por favor verifique que el _id sea correcto'
 
         });
     }

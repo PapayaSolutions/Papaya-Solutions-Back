@@ -19,6 +19,7 @@ router.post('/registrar-recinto', function(req, res) {
         asientos_accesibilidad: body.asientos_accesibilidad,
         latitud: body.latitud,
         longitud: body.longitud,
+        url_imagen: body.url_imagen,
         estado: body.estado
     });
 
