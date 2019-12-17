@@ -168,4 +168,32 @@ router.route('/validar_codigo')
     });
 
 
+//Editar info de estado
+router.post('/modificar-estado', function(req, res) {
+    let body = req.body;
+    User.updateOne({ _id: body._id }, {
+            $set: {
+
+                estado: body.estado,
+
+            }
+        },
+        function(error, info) {
+            if (error) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar el estado del usuario',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+});
+
+
 module.exports = router;
