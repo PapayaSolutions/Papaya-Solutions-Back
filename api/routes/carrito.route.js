@@ -129,4 +129,26 @@ router.post('/borrar', function(req, res) {
 
 });
 
+router.post('/borrar_carrito_usuario/:usuario', function(req, res) {
+
+    let usuario = req.params.usuario;
+
+    Carrito.deleteOne({ usuario: usuario },
+        function(err, carritosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron carritos registrados para ese usuario',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    carritos: carritosBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get 
+
 module.exports = router;

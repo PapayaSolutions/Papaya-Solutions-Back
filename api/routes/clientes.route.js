@@ -36,7 +36,7 @@ router.post('/registrar-cliente', function(req, res) {
         distrito: body.distrito,
         direccion: body.direccion,
         contrasena: 'pass123',
-        codigov: '123',
+        codigov: body.codigov,
         tipo: "Cliente",
         estado: 'activo',
         url_avatar: body.url_avatar,
@@ -77,7 +77,7 @@ router.post('/registrar-cliente', function(req, res) {
                                 </div>
                                 <div class="verificacion">
                                     <p>¡Tu correo ${nuevo_cliente.correo_cliente} ha sido verificados con éxito!</p>
-                                    <p>¡Tu clave temporal es: ${nuevo_cliente.contrasena} </p>
+                                    <p>¡Tu código de verifición es: ${nuevo_cliente.codigov} </p>
                                 </div>
                                 <div>  
                                     <button type="button" class="btn" id="btn_registro"> <a href="http://127.0.0.1:5500/iniciar_sesion.html">Iniciar Sesión</a> </button>

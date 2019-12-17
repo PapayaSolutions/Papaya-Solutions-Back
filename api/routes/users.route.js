@@ -11,7 +11,7 @@ router.post('/registrar-user-cli', function(req, res) {
     let nuevo_user = new User({
         correo: body.correo,
         contrasena: 'pass123',
-        codigov: '123',
+        codigov: body.codigov,
         tipo: "Cliente",
         estado: 'Habilitado',
         preferencias: body.preferencias
@@ -125,12 +125,46 @@ User.validar = function(req, res) {
     )
 };
 
-
 router.route('/validar_credenciales')
     .post(function(req, res) {
         User.validar(req, res);
     });
 
+
+//codigo
+User.validar_codigo = function(req, res) {
+    User.findOne({ correo: req.body.correo }).then(
+        function(userBD) {
+            // El usuario si existe
+            console.log(userBD);
+            if (userBD) {
+                // La contraseña es correcta
+                if (userBD.codigov == req.body.codigov) {
+                    res.json({
+                        success: true,
+                        userBD: userBD
+                    });
+                    // La contraseña es incorrecta
+                } else {
+                    res.json({
+                        success: false
+                    });
+                }
+                // El usuario no existe
+            } else {
+                res.json({
+                    success: false,
+                    msg: 'El usuario no existe'
+                });
+            }
+        }
+    )
+};
+
+router.route('/validar_codigo')
+    .post(function(req, res) {
+        User.validar_codigo(req, res);
+    });
 
 
 module.exports = router;

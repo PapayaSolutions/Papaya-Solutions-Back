@@ -19,9 +19,9 @@ const cliente_schema = new mongoose.Schema({
     codigov: { type: String, required: false, unique: false },
     tipo: { type: String, required: true, unique: false },
     estado: { type: String, required: true },
-    url_avatar: { type: String, required: true, unique: false },
+    url_avatar: { type: String, required: false, unique: false },
     preferencias: [{
-        categoria: { type: String, required: true, unique: false }
+        categoria: { type: String, required: false, unique: false }
     }],
     metodos_pago: [{
         tarjeta: { type: Number, required: true, unique: true },
