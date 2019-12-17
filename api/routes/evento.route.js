@@ -165,11 +165,11 @@ router.post('/calificar', function(req, res) {
 });
 router.post('/comentar', function(req, res) {
     let body = req.body;
-
     if (body.cliente_id) {
-        Evento.updateOne({ _id: body._id, 'calificaciones.usuario': body.cliente_id }, {
+        Evento.updateOne({ _id: body._id, 'calificaciones.usuario': body.cliente_id, 'calificaciones.correo': body.correo_id }, {
                 $set: {
                     'calificaciones.$.comentario': body.comentario,
+                    'calificaciones.$.correo': body.correo,
                 }
             },
             function(error, info) {
