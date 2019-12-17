@@ -38,9 +38,9 @@ router.post('/registrar-cliente', function(req, res) {
         contrasena: 'pass123',
         codigov: body.codigov,
         tipo: "Cliente",
-        estado: 'activo',
+        estado: 'Activo',
         url_avatar: body.url_avatar,
-        url_tarjeta: body.url_tarjeta,
+
     });
 
 
