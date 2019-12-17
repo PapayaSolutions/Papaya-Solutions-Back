@@ -90,6 +90,65 @@ router.post('/agregar_evento', function(req, res) {
 
 });
 
+router.post('/borrar', function(req, res) {
+    let body = req.body;
 
+    if (body._id) {
+        Carrito.update({ _id: body._id, 'compras._id': body.evento_id }, {
+                $set: {
+
+                    'compras.$.evento': 'BORRADO',
+                    'compras.$.cantidad': '',
+
+                },
+
+            },
+            function(error, info) {
+                if (error) {
+                    res.json({
+                        resultado: false,
+                        msg: 'No se pudo borrar el evento',
+                        err
+                    });
+                } else {
+                    res.json({
+                        resultado: true,
+                        msg: 'Evento borrado exitosamente',
+                        info: info
+                    })
+                }
+            }
+        )
+    } else {
+        return res.json({
+            success: false,
+            msj: 'No se pudo borrar el evento, por favor verifique que el cliente_id sea correcto'
+
+        });
+    }
+
+});
+
+router.post('/borrar_carrito_usuario/:usuario', function(req, res) {
+
+    let usuario = req.params.usuario;
+
+    Carrito.deleteOne({ usuario: usuario },
+        function(err, carritosBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se encontraron carritos registrados para ese usuario',
+                    err
+                }); //json
+            } else {
+                res.json({
+                    resultado: true,
+                    carritos: carritosBD
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get 
 
 module.exports = router;

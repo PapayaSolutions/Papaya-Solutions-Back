@@ -6,18 +6,21 @@ const express = require('express'),
 const mongoose = require('mongoose');
 
 //registrar organizador
-router.post('/registrar-organizador', function(req, res) {
+router.post('/registrar_organizador', function(req, res) {
     let body = req.body;
     let nuevo_organizador = new Organizador({
 
-        nombre: body.nombre,
+        p_nombre: body.p_nombre,
+        s_nombre: body.s_nombre,
+        p_apellido: body.p_apellido,
+        s_apellido: body.s_apellido,
         correo: body.correo,
-        edad: body.edad,
         genero: body.genero,
-        cedula: body.cedula,
+        identificacion: body.identificacion,
+        nacimiento: body.nacimiento,
         provincia: body.provincia,
         canton: body.canton,
-        distrito: body.direccion,
+        distrito: body.distrito,
         direccion: body.direccion,
         experiencia: body.experiencia,
         estado: body.estado,
@@ -59,4 +62,27 @@ router.get('/listar_organizador', function(req, res) {
         }
     );
 });
+
+router.get('/listar_organizador_id', function(req, res) {
+
+    let _id = req.query._id;
+
+    Organizador.findOne({ _id: _id },
+        function(err, organizador) {
+            if (err) {
+                return res.json({
+                    resultado: false,
+                    msg: 'No se encontraron descuentos registrados con ese ID',
+                    err
+                }); //json
+            } else {
+                return res.json({
+                    resultado: true,
+                    organizador: organizador
+                }); //json
+            } //if-elses
+        } //function
+    ); //find
+}); //get
+
 module.exports = router;

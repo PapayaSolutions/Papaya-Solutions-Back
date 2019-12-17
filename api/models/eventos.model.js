@@ -97,6 +97,23 @@ const evento_schema = new mongoose.Schema({
             type: String,
             required: false,
             unique: false
+        },
+        correo: {
+            type: String,
+
+        }
+    }],
+
+    reservas: [{
+        usuario: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        cantidad: {
+            type: Number,
+            required: false,
+            unique: false
         }
     }],
     organizador: {

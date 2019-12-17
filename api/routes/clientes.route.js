@@ -36,9 +36,10 @@ router.post('/registrar-cliente', function(req, res) {
         distrito: body.distrito,
         direccion: body.direccion,
         contrasena: 'pass123',
-        codigov: '123',
+        codigov: body.codigov,
         tipo: "Cliente",
         estado: 'activo',
+        url_avatar: body.url_avatar,
         url_tarjeta: body.url_tarjeta,
     });
 
@@ -76,7 +77,7 @@ router.post('/registrar-cliente', function(req, res) {
                                 </div>
                                 <div class="verificacion">
                                     <p>¡Tu correo ${nuevo_cliente.correo_cliente} ha sido verificados con éxito!</p>
-                                    <p>¡Tu clave temporal es: ${nuevo_cliente.contrasena} </p>
+                                    <p>¡Tu código de verifición es: ${nuevo_cliente.codigov} </p>
                                 </div>
                                 <div>  
                                     <button type="button" class="btn" id="btn_registro"> <a href="http://127.0.0.1:5500/iniciar_sesion.html">Iniciar Sesión</a> </button>
@@ -186,6 +187,7 @@ router.post('/editar_cliente', function(req, res) {
                 canton: body.canton,
                 distrito: body.distrito,
                 direccion: body.direccion,
+                url_avatar: body.url_avatar,
                 url_tarjeta: body.url_tarjeta,
 
             }
@@ -269,7 +271,7 @@ router.get('/listar_cliente_id/:_id', function(req, res) {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se encontraron Eventos Registrados con ese ID',
+                    msg: 'No se encontraron clientes Registrados con ese ID',
                     err
                 }); //json
             } else {
@@ -302,8 +304,6 @@ router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
         } //function
     ); //find
 }); //get
-
-
 
 router.post('/registrar_tarjeta', function(req, res) {
     if (req.body.email) {
