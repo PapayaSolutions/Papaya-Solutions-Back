@@ -44,6 +44,7 @@ router.post('/registrar-evento', function(req, res) {
         precio_entrada: body.precio_entrada,
         cantidad_maxima_usuario: body.cantidad_maxima_usuario,
         descripcion: body.descripcion,
+        organizador: body.organizador,
         URL_imagen: body.URL_imagen,
         hora: body.hora,
         estado: 'Activo'
