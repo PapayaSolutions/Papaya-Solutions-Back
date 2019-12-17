@@ -95,6 +95,7 @@ router.post('/registrar-user-enc', function(req, res) {
         });
 });
 
+
 //login
 User.validar = function(req, res) {
     User.findOne({ correo: req.body.correo }).then(
