@@ -32,7 +32,7 @@ router.post('/registrar_impuesto', function(req, res) {
         nombre: body.nombre,
         porcentaje: body.porcentaje,
         descripcion: body.descripcion,
-        estado: 'Activo'
+        estado: 'Habilitado'
 
     });
     nuevo_impuesto.save(
