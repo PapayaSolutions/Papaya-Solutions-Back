@@ -167,6 +167,31 @@ router.route('/validar_codigo')
         User.validar_codigo(req, res);
     });
 
+//editar contraseña
+router.post('/modificar_contrasena', function(req, res) {
+    let body = req.body;
+    User.updateOne({ correo: body.correo }, {
+            $set: {
+                contrasena: body.contrasena
+            }
+        },
+        function(err, userBD) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo modificar la contraseña',
+                    err
+                });
+            } else {
+                res.json({
+                    resultado: true,
+                    userBD
+                })
+            }
+        }
+    )
+});
+
 
 //Editar info de estado
 router.post('/modificar-estado', function(req, res) {
