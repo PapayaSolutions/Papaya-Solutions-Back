@@ -98,7 +98,7 @@
                                   <img src="https://res.cloudinary.com/pypsolutionscr/image/upload/v1576607143/mail_img_dqcvsf.png" alt="Nosotros te llevamos" style=" height: 100px; width: 100px; margin-bottom: 5px;">
                                   <div>
                       
-                                      <a href="http://127.0.0.1:5500/iniciar_sesion.html" style="text-decoration: none;
+                                      <a href="http://127.0.0.1:5500/ingresar_codigo.html" style="text-decoration: none;
                                       color: #f7882f;
                                       border: 1px solid #f7882f;
                                       
