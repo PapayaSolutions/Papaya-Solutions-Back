@@ -28,7 +28,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
         contrasena: body.contrasena,
         codigov: body.codigov,
         tipo: 'Encargado de recinto',
-        estado: body.estado
+        estado: 'Habilitado'
     });
 
 
