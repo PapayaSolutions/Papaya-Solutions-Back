@@ -130,9 +130,6 @@
               }
           });
   });
-
-
-
   router.post('/editar_cliente', function(req, res) {
       let body = req.body;
       Cliente.updateOne({ _id: req.body._id }, {
@@ -171,42 +168,6 @@
           }
       )
   });
-
-  // Cliente.validar = function(req, res) {
-  //     Cliente.findOne({ correo_cliente: req.body.correo_cliente }).then(
-  //         function(clienteBD) {
-  //             // El usuario si existe
-  //             console.log(clienteBD);
-  //             if (clienteBD) {
-  //                 // La contraseña es correcta
-  //                 if (clienteBD.contrasena == req.body.contrasena) {
-  //                     res.json({
-  //                         success: true,
-  //                         clienteBD: clienteBD
-  //                     });
-  //                     // La contraseña es incorrecta
-  //                 } else {
-  //                     res.json({
-  //                         success: false
-  //                     });
-  //                 }
-  //                 // El usuario no existe
-  //             } else {
-  //                 res.json({
-  //                     success: false,
-  //                     msg: 'El usuario no existe'
-  //                 });
-  //             }
-  //         }
-  //     )
-  // };
-
-  // router.route('/validar_credenciales')
-  //     .post(function(req, res) {
-  //         Cliente.validar(req, res);
-  //     });
-
-
   router.get('/listar_clientes', function(req, res) {
       Cliente.find(
           function(err, clientesBD) {
@@ -225,7 +186,6 @@
           } //function
       ); //find
   }); //get
-
   router.get('/listar_cliente_id/:_id', function(req, res) {
       let _id = req.params._id;
 
@@ -246,7 +206,6 @@
           } //function
       ); //find
   }); //get
-
   router.get('/listar_cliente_mail/:correo_cliente', function(req, res) {
       let correo_cliente = req.params.correo_cliente;
 
@@ -267,7 +226,6 @@
           } //function
       ); //find
   }); //get
-
   router.post('/registrar_tarjeta', function(req, res) {
       if (req.body.email) {
           Cliente.update({ correo_cliente: req.body.email }, {
@@ -332,7 +290,6 @@
           }
       )
   });
-
   router.post('/deshabilitar_tarjeta', function(req, res) {
       let body = req.body;
       Cliente.updateOne({ _id: body._id, 'metodos_pago._id': body.tarjeta_id }, {
@@ -357,5 +314,90 @@
           }
       )
   });
+  router.post('/enviar_entrada', function(req, res) {
+      let body = req.body;
+      let mailOptions = {
+
+          from: 'pypsolutionscr@gmail.com',
+          to: body.correo,
+          subject: 'Aquí esta tu entrada, Míshka te lleva.',
+          html: `<!DOCTYPE html>
+          <html lang="en">
+          
+          <head>
+              <meta charset="UTF-8">
+              <title>Entrada a tu evento</title>
+              <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto&display=swap" rel="stylesheet">
+          </head>
+          
+          <body class="cuerpo" style="
+                                      font-size: 16px;
+                                      color: #292c2a;
+                                      ">
+              <main>
+                  <div class="fondo" style="margin: 0 auto;
+                                              margin-top: 10%;
+                                              text-align: center;
+                                              padding: 20px;
+                                              border: 2px solid #f7882f;
+                                              height: 750px;
+                                              width: 400px;
+                                              
+                                              opacity: 0.9;">
+                      <div class="verificacion">
+                          <h1 style="font-size: 20px;
+                                                      color: #f7882f;
+                                                      border-bottom: 1px solid #f7882f;">¡Gracias por tu compra ${body.nombre}!, acá están tus tiquetes.</h1>
+                      </div>
+                      <div class="verificacion">
+                          <p style="font-size: 20px;
+                                                      color: #292c2a;">Gracias por preferir nuestro sistema de ventas de tiquetes para tus eventos favoritos.</p>
+                      </div>
+                      <img src="https://res.cloudinary.com/pypsolutionscr/image/upload/v1576618751/mishka_b_alky0w.png" alt="Nosotros te llevamos" style=" height: auto; width: 150px; margin: 5px;">
+                      <div>
+                      </div>
+                      <div class="verificacion" style="padding: 10px;">
+                          <p style="font-size: 20px; color: #292c2a;">¡Tu compra ha sido realizada con éxito! </p>
+                          <img src="${body.imagen}" alt="Nosotros te llevamos" style="  height: 100px; width: 100px; margin: 10px;">
+                          <p style="font-size: 35px; color: #f7882f;"> ${body.nombre_evento} </p>
+                          <p style="font-size: 30px; color: #292c2a;"> ¢${body.precio} X ${body.count} = ¢${body.total} </p>
+                          <p style=" font-size: 20px; color: #292c2a;">¡Más información del evento acá: </p>
+                      </div>
+          
+                      <img src="https://res.cloudinary.com/pypsolutionscr/image/upload/v1576623098/kiuk6crupx9b0a60afqx.png" alt="Nosotros te llevamos" style=" background:#f7882f; height: 100px; width: 100px; margin-bottom: 5px;">
+                      <div style=" margin-top: 5px;">
+          
+                          <a href="http://127.0.0.1:5500/iniciar_sesion.html" style="text-decoration: none;
+                                                      color: #f7882f;
+                                                      border: 2px solid #f7882f;
+                                                      padding: 5px;
+                                                      font-size: 22px;
+                                                      font-weight: 500;
+                                                      margin-top: 5px;
+                                                      ">Iniciar Sesión</a>
+                      </div>
+                  </div>
+              </main>
+          </body>
+          
+          </html>`
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+          if (error) {
+              console.log(error);
+
+          } else {
+              console.log('Correo enviado', info.response);
+          }
+      });
+
+      res.json({
+          resultado: true,
+          body
+      })
+
+  });
+
 
   module.exports = router;
