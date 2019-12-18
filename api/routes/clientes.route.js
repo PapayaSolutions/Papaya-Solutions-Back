@@ -130,7 +130,8 @@
               }
           });
   });
-  router.post('/editar_cliente', function(req, res) {
+
+  router.post('/modificar_cliente', function(req, res) {
       let body = req.body;
       Cliente.updateOne({ _id: req.body._id }, {
               $set: {
@@ -147,9 +148,7 @@
                   canton: body.canton,
                   distrito: body.distrito,
                   direccion: body.direccion,
-                  url_avatar: body.url_avatar,
-                  url_tarjeta: body.url_tarjeta,
-
+                  url_avatar: body.url_avatar
               }
           },
           function(error, clientesBD) {
