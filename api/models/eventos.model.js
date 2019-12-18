@@ -86,7 +86,7 @@ const evento_schema = new mongoose.Schema({
         usuario: {
             type: String,
             required: true,
-            unique: true
+            unique: false
         },
         calificacion: {
             type: Number,
@@ -108,7 +108,7 @@ const evento_schema = new mongoose.Schema({
         usuario: {
             type: String,
             required: true,
-            unique: true
+            unique: false
         },
         cantidad: {
             type: Number,
