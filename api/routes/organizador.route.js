@@ -35,7 +35,8 @@ router.post('/registrar_organizador', function(req, res) {
         direccion: body.direccion,
         experiencia: body.experiencia,
         estado: body.estado,
-        tipo: body.tipo
+        tipo: body.tipo,
+
     });
 
     nuevo_organizador.save(function(err, organizador) {
@@ -86,7 +87,7 @@ router.post('/registrar_organizador', function(req, res) {
                             </div>
                             <div class="verificacion" style="padding: 20px;">
                                 <p style="font-size: 20px;">¡Tu correo ${nuevo_organizador.correo_cliente} ha sido verificado con éxito!</p color: #292c2a;>
-                                <p style=" font-size: 20px; color: #292c2a;">Tu código de verifición es: ${nuevo_organizador.codigov} </p>
+                                <p style=" font-size: 20px; color: #292c2a;">Tu código de verifición es: ${body.codigov} </p>
                             </div>
                             <img src="https://res.cloudinary.com/pypsolutionscr/image/upload/v1576607143/mail_img_dqcvsf.png" alt="Nosotros te llevamos" style=" height: 100px; width: 100px; margin-bottom: 5px;">
                             <div>
