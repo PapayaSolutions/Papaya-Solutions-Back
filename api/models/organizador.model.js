@@ -1,7 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const descuento_schema = new mongoose.Schema({
+const organizador_schema = new mongoose.Schema({
 
     p_nombre: { type: String, required: true },
     s_nombre: { type: String },
@@ -21,4 +21,4 @@ const descuento_schema = new mongoose.Schema({
 });
 
 //Modelo en que se apoya, nombre de la conección den la base de datos
-module.exports = mongoose.model('Organizador', descuento_schema, 'organizador');
+module.exports = mongoose.model('Organizador', organizador_schema, 'organizador');
