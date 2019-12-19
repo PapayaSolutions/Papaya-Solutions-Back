@@ -11,8 +11,8 @@ const mongoose = require('mongoose');
 const transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'pypsolutionscr@gmail.com',
-        pass: '7EjuAF8%01e',
+        user: 'papayamishka01@gmail.com',
+        pass: 'ebfkmchygtmfowrp',
     }
 });
 
@@ -44,7 +44,7 @@ router.post('/registrar-encargado-recinto', function(req, res) {
 
                 let mailOptions = {
 
-                    from: 'pypsolutionscr@gmail.com',
+                    from: 'papayamishka01@gmail.com',
                     to: nuevo_encargado_recinto.correo,
                     subject: 'Bienvenidos a Mishka, su pagína de favorita de eventos.',
                     html: `<!DOCTYPE html>
