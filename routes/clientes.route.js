@@ -130,16 +130,16 @@
               }
           });
   });
-  router.post('/editar_cliente', function(req, res) {
-      let body = req.body;
-      Cliente.updateOne({ _id: req.body._id }, {
-              $set: {
 
+  router.post('/edit_usuario', function(req, res) {
+      let body = req.body;
+      Cliente.updateOne({ _id: body._id }, {
+              $set: {
                   p_nombre: body.p_nombre,
                   s_nombre: body.s_nombre,
                   p_apellido: body.p_apellido,
                   s_apellido: body.s_apellido,
-                  correo_cliente: body.correo_cliente,
+                  correo_cliente: body.correo,
                   identificacion: body.identificacion,
                   f_nacimiento: body.f_nacimiento,
                   genero: body.genero,
@@ -147,27 +147,25 @@
                   canton: body.canton,
                   distrito: body.distrito,
                   direccion: body.direccion,
-                  url_avatar: body.url_avatar,
-                  url_tarjeta: body.url_tarjeta,
-
               }
           },
-          function(error, clientesBD) {
-              if (error) {
+          function(err, clienteBD) {
+              if (err) {
                   res.json({
                       resultado: false,
-                      msg: 'No se pudo modificar la informacion del usuario',
+                      msg: 'No se pudo modificar el usuario',
                       err
                   });
               } else {
                   res.json({
                       resultado: true,
-                      clientes: clientesBD
+                      clienteBD
                   })
               }
           }
       )
   });
+
   router.get('/listar_clientes', function(req, res) {
       Cliente.find(
           function(err, clientesBD) {
