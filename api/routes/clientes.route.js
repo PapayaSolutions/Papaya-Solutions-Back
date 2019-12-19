@@ -133,7 +133,7 @@
 
   router.post('/edit_usuario', function(req, res) {
       let body = req.body;
-      Descuento.updateOne({ _id: body._id }, {
+      Cliente.updateOne({ _id: body._id }, {
               $set: {
                   p_nombre: body.p_nombre,
                   s_nombre: body.s_nombre,
