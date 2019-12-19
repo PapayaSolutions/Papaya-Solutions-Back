@@ -13,8 +13,8 @@
   const transporter = nodeMailer.createTransport({
       service: 'gmail',
       auth: {
-          user: 'pypsolutionscr@gmail.com',
-          pass: '7EjuAF8%01e',
+          user: 'papayamishka01@gmail.com',
+          pass: 'ebfkmchygtmfowrp',
       }
   });
 
@@ -56,7 +56,7 @@
 
                   let mailOptions = {
 
-                      from: 'pypsolutionscr@gmail.com',
+                      from: 'papayamishka01@gmail.com',
                       to: nuevo_cliente.correo_cliente,
                       subject: 'Bienvenidos a Mishka, su pagína de favorita de eventos.',
                       html: `<!DOCTYPE html>
@@ -318,7 +318,7 @@
       let body = req.body;
       let mailOptions = {
 
-          from: 'pypsolutionscr@gmail.com',
+          from: 'papayamishka01@gmail.com',
           to: body.correo,
           subject: 'Aquí esta tu entrada, Míshka te lleva.',
           html: `<!DOCTYPE html>
